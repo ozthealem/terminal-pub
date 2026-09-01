@@ -1667,7 +1667,7 @@ input[type=radio] {
 .content > .posts:first-child > .post:first-child .post__title,
 .content > .post:first-child > header .post__title { margin-top: 0; }
 /* hero above the listing: a small gap before the first title */
-.hero + .posts > .post:first-child { padding-top: calc(var(--baseline) * 2); }
+.hero + .posts > .post:first-child { padding-top: 15px; }
 .hero + .posts > .post:first-child .post__title { margin-top: 0; }
 .posts .post__content { margin-top: calc(var(--baseline) * 4); }
 .post__entry { margin-top: calc(var(--baseline) * 4); }
