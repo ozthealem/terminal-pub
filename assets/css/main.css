@@ -1661,10 +1661,14 @@ input[type=radio] {
   .posts .post__title { margin-top: calc(var(--baseline) * 3); }
 }
 .posts > .post { margin: 0 auto; padding: calc(var(--baseline) * 4) 0; }
-.posts > .post:first-child,
+/* first / only post: flush to the top, unless a hero sits above it */
+.content > .posts:first-child > .post:first-child,
 .content > .post:first-child { margin-top: 0; padding-top: 0; }
-.posts > .post:first-child .post__title,
+.content > .posts:first-child > .post:first-child .post__title,
 .content > .post:first-child > header .post__title { margin-top: 0; }
+/* hero above the listing: a small gap before the first title */
+.hero + .posts > .post:first-child { padding-top: calc(var(--baseline) * 2); }
+.hero + .posts > .post:first-child .post__title { margin-top: 0; }
 .posts .post__content { margin-top: calc(var(--baseline) * 4); }
 .post__entry { margin-top: calc(var(--baseline) * 4); }
 .posts .post__content > figure.post__image { display: block; margin: calc(var(--baseline) * 3) 0 calc(var(--baseline) * 4); }
