@@ -77,9 +77,15 @@ tabs. Add this markup to a post or page via an HTML block:
 
 ## Install
 
-Download the latest release zip (or zip this folder) and use **Publii → Themes
-→ Install theme**. Alternatively drop the folder into Publii's `themes/`
-directory. Then select **Terminal-Pub** for your site.
+1. Go to [**Releases**](../../releases) and download the **`.zip`** from the
+   latest release (either `terminal-pub-x.y.z.zip` or *Source code (zip)*).
+   The `.tar.gz` is the same files in a different format; you don't need it.
+2. In Publii: **Themes → Install theme** → pick the zip.
+3. Select **Terminal-Pub** for your site.
+
+Works the same on Windows, macOS and Linux. Publii always wants the zip.
+
+Alternatively, unzip the folder straight into Publii's `themes/` directory.
 
 ## Credits & license
 
