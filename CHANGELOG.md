@@ -21,3 +21,5 @@ the additions are:
 ### Changed
 - `theme-variables.js` now derives `--accent`, `--background` and `--color`
   from the colour options (all emitted as `H, S%, L%` triplets)
+- Tighter vertical rhythm: smaller gaps above post titles and images, first
+  post sits flush to the top of the page (listing and single views)

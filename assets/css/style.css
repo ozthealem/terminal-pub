@@ -7,3 +7,13 @@
 .lang-btn.active:hover{color:hsla(var(--background),var(--alpha,1))}
 .lang-content{display:none}
 .lang-content.active{display:block}
+
+/* --- Terminal-Pub: tighter vertical rhythm (listing + single post/page) --- */
+.post__title{margin-top:calc(var(--baseline) * 4)}
+@media all and (min-width:42.75em){.post__title{margin-top:calc(var(--baseline) * 5)}}
+.posts > .post:first-child,.content > .post:first-child{margin-top:0;padding-top:0}
+.posts > .post:first-child .post__title,.content > .post:first-child > header .post__title{margin-top:0}
+.posts .post__content{margin-top:calc(var(--baseline) * 4)}
+.posts .post__content > .post__image:first-child{margin-top:calc(var(--baseline) * 2)}
+.post__entry{margin-top:calc(var(--baseline) * 4)}
+.posts > .post:first-child .post__title{margin-bottom:calc(var(--baseline) * 4 + 5px)}
