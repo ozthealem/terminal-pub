@@ -1632,3 +1632,50 @@ input[type=radio] {
   -webkit-transform: translate(-50%, 0);
           transform: translate(-50%, 0);
 }
+/* ===== Terminal-Pub additions ===== */
+
+/* Bilingual content tabs (see assets/js/lang.js) */
+.lang-tabs { display: flex; flex-wrap: wrap; gap: calc(var(--baseline) * 2); margin: calc(var(--baseline) * 5) 0; }
+.lang-btn {
+  background: transparent;
+  border: 1px solid hsla(var(--accent), var(--alpha, 1));
+  border-radius: var(--border-radius);
+  color: hsla(var(--color), var(--alpha, 1));
+  cursor: pointer;
+  font: inherit;
+  font-family: var(--menu-font);
+  margin: 0;
+  padding: 5px 15px;
+  transition: var(--transition);
+}
+.lang-btn:hover { color: hsla(var(--accent), var(--alpha, 1)); }
+.lang-btn.active { background: hsla(var(--accent), var(--alpha, 1)); color: hsla(var(--background), var(--alpha, 1)); }
+.lang-btn.active:hover { color: hsla(var(--background), var(--alpha, 1)); }
+.lang-content { display: none; }
+.lang-content.active { display: block; }
+
+/* Tighter vertical rhythm */
+.post__title { margin-top: calc(var(--baseline) * 4); }
+@media all and (min-width: 42.75em) {
+  .post__title { margin-top: calc(var(--baseline) * 5); }
+  .posts .post__title { margin-top: calc(var(--baseline) * 3); }
+}
+.posts > .post { margin: 0 auto; padding: calc(var(--baseline) * 4) 0; }
+.posts > .post:first-child,
+.content > .post:first-child { margin-top: 0; padding-top: 0; }
+.posts > .post:first-child .post__title,
+.content > .post:first-child > header .post__title { margin-top: 0; }
+.posts .post__content { margin-top: calc(var(--baseline) * 4); }
+.post__entry { margin-top: calc(var(--baseline) * 4); }
+.posts .post__content > figure.post__image { display: block; margin: calc(var(--baseline) * 3) 0 calc(var(--baseline) * 4); }
+.posts .post__content > figure.post__image:first-child { margin-top: calc(var(--baseline) * 2); }
+.posts > .post:first-child .post__title { margin-bottom: calc(var(--baseline) * 4 + 5px); }
+
+/* Post navigation: kill the ~100px top margin and the empty share row */
+.pagination { margin-top: calc(var(--baseline) * 8); }
+.pagination__title { margin-top: calc(var(--baseline) * 8); }
+.post__share:empty { display: none; margin: 0; }
+
+/* Flatter dropdown submenu, slimmer featured-image frame */
+.navbar .navbar__submenu { box-shadow: none; border-width: 1px; }
+.post__cover { padding: calc(var(--baseline) * 1); border-width: 5px; }
