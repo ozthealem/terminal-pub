@@ -23,3 +23,7 @@ the additions are:
   from the colour options (all emitted as `H, S%, L%` triplets)
 - Tighter vertical rhythm: smaller gaps above post titles and images, first
   post sits flush to the top of the page (listing and single views)
+- Post navigation ("Read other posts") no longer carries a ~100px top margin;
+  the empty share-buttons row is hidden when no share buttons are enabled
+- Flatter dropdown submenu (no stacked shadow, 1px border) and a slimmer
+  featured-image frame (5px)

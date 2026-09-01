@@ -8,12 +8,19 @@
 .lang-content{display:none}
 .lang-content.active{display:block}
 
-/* --- Terminal-Pub: tighter vertical rhythm (listing + single post/page) --- */
+/* --- Terminal-Pub: layout tweaks (spacing, flat submenu, slim image frame) --- */
 .post__title{margin-top:calc(var(--baseline) * 4)}
-@media all and (min-width:42.75em){.post__title{margin-top:calc(var(--baseline) * 5)}}
+@media all and (min-width:42.75em){.post__title{margin-top:calc(var(--baseline) * 5)}.posts .post__title{margin-top:calc(var(--baseline) * 3)}}
+.posts > .post{margin:0 auto;padding:calc(var(--baseline) * 4) 0}
 .posts > .post:first-child,.content > .post:first-child{margin-top:0;padding-top:0}
 .posts > .post:first-child .post__title,.content > .post:first-child > header .post__title{margin-top:0}
 .posts .post__content{margin-top:calc(var(--baseline) * 4)}
-.posts .post__content > .post__image:first-child{margin-top:calc(var(--baseline) * 2)}
 .post__entry{margin-top:calc(var(--baseline) * 4)}
+.posts .post__content > figure.post__image{display:block;margin:calc(var(--baseline) * 3) 0 calc(var(--baseline) * 4)}
+.posts .post__content > figure.post__image:first-child{margin-top:calc(var(--baseline) * 2)}
 .posts > .post:first-child .post__title{margin-bottom:calc(var(--baseline) * 4 + 5px)}
+.pagination{margin-top:calc(var(--baseline) * 8)}
+.pagination__title{margin-top:calc(var(--baseline) * 8)}
+.post__share:empty{display:none;margin:0}
+.post__cover{padding:calc(var(--baseline) * 1);border-width:5px}
+.navbar .navbar__submenu{box-shadow:none;border-width:1px}
