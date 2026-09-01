@@ -122,7 +122,7 @@
             "name": "textHero",
             "label": "Text",
             "group": "Layout",
-            "value": "<h1>Welcome Aboard!</h1><p>Explore the unique features of the <code>Terminal</code> theme in this demo. Dive in and see if it meets your needs.</p><p>Initially created by <a href=\"https://github.com/panr\" target=\"_blank\" rel=\"nofollow\">Radoslaw Koziel</a>, this theme has been expertly ported to Publii CMS by the Publii Team.</p>",
+            "value": "<h1>Welcome</h1><p>This is <code>Terminal-Pub</code>, a fork of <a href=\"https://github.com/panr/hugo-theme-terminal\" target=\"_blank\" rel=\"noopener\">Terminal</a> with a full colour system, bilingual content tabs and ISO date formats. Edit this text or switch the hero off in <strong>Theme settings &rarr; Layout</strong>.</p>",
             "type": "wysiwyg",
             "dependencies": [
                 {
