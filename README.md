@@ -8,6 +8,13 @@ Templates and layout are unchanged from Terminal. Terminal-Pub adds a real
 **colour system**, **bilingual content tabs**, ISO date formats and a
 self-updating copyright year.
 
+**Live demo:** https://terminal-demo.github.io/
+
+## Recommended site settings
+
+Under **Site Settings → URLs**, turn on **Clean URLs** (`/post/` instead of
+`/post.html`). This is a per-site Publii setting, not something a theme controls.
+
 ## Colour system
 
 **Theme settings → Colors:**
