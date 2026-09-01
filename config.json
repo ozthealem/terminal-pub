@@ -83,7 +83,7 @@
             "name": "pageAligment",
             "label": "Page aligment",
             "group": "Layout",
-            "value": "left",
+            "value": "center",
             "type": "radio",
             "options": [
                 {
@@ -1950,7 +1950,7 @@
             "name": "copyrightText",
             "label": "Copyright text",
             "group": "Footer",
-            "value": "<p>© 2024 Powered by Publii CMS :: <a href=\"https://github.com/panr/hugo-theme-terminal\" target=\"_blank\" rel=\"noopener\">Theme</a> ported by the <a href=\"https://getpublii.com/customization-service/\" target=\"_blank\" rel=\"noopener\">Publii Team</a></p> ",
+            "value": "<p>© 2024 · <a href=\"https://github.com/ozthealem/terminal-pub\" target=\"_blank\" rel=\"noopener\">Terminal-Pub</a>, a fork of <a href=\"https://github.com/panr/hugo-theme-terminal\" target=\"_blank\" rel=\"noopener\">Terminal</a></p>",
             "type": "wysiwyg"
         },
         {
