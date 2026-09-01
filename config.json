@@ -1950,7 +1950,7 @@
             "name": "copyrightText",
             "label": "Copyright text",
             "group": "Footer",
-            "value": "<p>© 2024 · <a href=\"https://github.com/ozthealem/terminal-pub\" target=\"_blank\" rel=\"noopener\">Terminal-Pub</a>, a fork of <a href=\"https://github.com/panr/hugo-theme-terminal\" target=\"_blank\" rel=\"noopener\">Terminal</a></p>",
+            "value": "<p>© 2026 · <a href=\"https://github.com/ozthealem/terminal-pub\" target=\"_blank\" rel=\"noopener\">Terminal-Pub</a> the Fork</p>",
             "type": "wysiwyg"
         },
         {
