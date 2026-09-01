@@ -1,0 +1,25 @@
+{{> head}}
+{{> navbar}}
+<main class="content page page--tags">   
+    <div class="content page">
+       <div class="page__header">
+            <h1 class="h2 page__title"> 
+            {{ translate 'tags.tagsPageTitle' }} 
+            {{#if @config.custom.tagsTagCount}}
+               <sup>({{tagsNumber}} {{ translate "tags.tags" (math tagsNumber '+' 0)}})</sup>
+            {{/if}}
+         </h1>
+      </div>
+      <ul class="list">
+         {{#each tags}}
+            <li class="list__item">             
+               <a href="{{url}}" class="list__title">{{name}}</a>            
+               {{#if @config.custom.tagsPostCount}}
+                  <sup>({{postsNumber}} {{ translate "tags.post" (math postsNumber '+' 0)}})</sup>
+               {{/if}}     
+            </li>
+         {{/each}}
+      </ul>
+   </div>
+</main>
+{{> footer}}

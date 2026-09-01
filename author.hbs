@@ -1,0 +1,118 @@
+{{> head}}
+{{> navbar}}
+<main class="content page page--author">
+   {{#author}}
+      <div class="page__header hero page--author__header">
+         <div class="page--author__top">
+            {{#if authorViewConfig.displayAvatar}}        
+               {{#if avatar}}
+                  <img 
+                     src="{{avatarImage.url}}" 
+                     {{ lazyload "lazy" }}
+                     height="{{avatarImage.height}}"
+                     width="{{avatarImage.width}}" 
+                     class="page--author__avatar" 
+                     alt="{{avatarImage.alt}}">
+               {{/if}}
+            {{/if}}
+            <h1 class="h2 page__title">
+               {{name}}
+               {{#if authorViewConfig.displayPostCounter}}<sup>({{postsNumber}} {{ translate "author.post" (math postsNumber '+' 0)}})</sup>{{/if}}
+            </h1>
+         </div>
+         {{#if authorViewConfig.displayDescription}} 
+            {{#if description}}
+               <div class="page__desc">{{{description}}}</div>
+            {{/if}} 
+         {{/if}} 
+         {{#if authorViewConfig.displayWebsite}}  
+            {{#if website}}
+               <div class="page--author__website">
+                  <a href="{{website}}" target="_blank" rel="nofollow noreferrer noopener">{{ translate 'author.visitWebsite' }} &#8599;</a>
+               </div>
+            {{/if}}  
+         {{/if}} 
+      </div>
+
+      {{#if authorViewConfig.displayPostList}} 
+         <div class="posts">
+            {{#each ../posts}}
+               <article class="post">
+                  <header>
+                     <h2 class="h1 post__title"><a href="{{url}}">{{title}}</a></h2>
+                     {{#checkIfAny @config.custom.listingDate @config.custom.listingAuthor}}
+                        <div class="post__meta">     
+                           {{#if @config.custom.listingDate}}
+                              <time datetime="{{date createdAt 'YYYY-MM-DDTHH:mm'}}" class="post__date">
+                                 {{#checkIf @config.custom.formatDate '!=' 'custom'}}
+                                    {{date createdAt @config.custom.formatDate}}
+                                 {{else}}
+                                    {{date createdAt @config.custom.formatDateCustom}}
+                                 {{/checkIf}}
+                              </time>
+                           {{/if}}
+                           {{#if @config.custom.listingAuthor}}
+                              {{#author}}
+                                 <a href="{{url}}" class="post__author">{{name}}</a>
+                              {{/author}}
+                           {{/if}}
+                        </div> 
+                     {{/checkIfAny}}  
+
+                     {{#checkIf @config.custom.listingTag '!==' "none" }}
+                        <div class="post__tags">
+                           {{#checkIf @config.custom.listingTag '==' "maintag" }}
+                              {{#if mainTag}}
+                                 <a href="{{ mainTag.url }}" class="invert">{{ mainTag.name }}</a>
+                              {{/if}}
+                           {{else}}
+                              {{#each tags}}
+                                 <a href="{{url}}" class="invert">{{name}}</a>
+                              {{/each}}
+                           {{/checkIf}}
+                        </div>
+                     {{/checkIf}}
+                  </header>
+
+                  {{#if @config.custom.listingFeaturedImage}}
+                     {{#featuredImage}}
+                        {{#if url}}
+                           <figure class="post__image post__cover">
+                                 <img
+                                    src="{{url}}"
+                                    {{#if @config.site.responsiveImages}}
+                                       {{responsiveImageAttributes 'featuredImage' srcset sizes}}
+                                    {{/if}}
+                                    {{ lazyload "lazy" }}
+                                    height="{{height}}"
+                                    width="{{width}}"
+                                    alt="{{alt}}">
+                                 {{#checkIfAny caption credits}}
+                                    <figcaption>
+                                       {{caption}}
+                                       {{credits}}
+                                    </figcaption>
+                                 {{/checkIfAny}}
+                              </figure>
+                        {{/if}}
+                     {{/featuredImage}}      
+                  {{/if}}      
+                  
+                  <div class="post__content">
+                     {{#if hasCustomExcerpt}}
+                        {{{ excerpt }}}
+                     {{else}}
+                        <p>{{{ excerpt }}}</p>
+                     {{/if}}
+                     {{#if @config.custom.listingReadMore}}
+                           <a href="{{url}}" class="read-more">{{ translate 'post.readMore' }} &#8594;</a>
+                     {{/if}}
+                  </div>
+               </article>
+            {{/each}}
+            {{> pagination}}
+         </div>
+      {{/if}} 
+   {{/author}}
+</main>
+{{> footer}}

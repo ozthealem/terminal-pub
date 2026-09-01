@@ -1,0 +1,2587 @@
+{
+    "name": "Terminal-Pub",
+    "version": "1.0.0",
+    "author": "ozthealem <https://ozthealem.com> — fork of Terminal by TidyCustoms <https://tidycustoms.net/>",
+    "menus": {
+        "mainMenu": {
+            "desc": "",
+            "name": "Main menu",
+            "maxLevels": -1
+        }
+    },
+    "renderer": {
+        "relatedPostsNumber": 0,
+        "renderRelatedPosts": true,
+        "renderSimilarPosts": false,
+        "renderPrevNextPosts": true,
+        "createContentStructure": true,
+        "createTagPages": true,
+        "createAuthorPages": true,
+        "createTagsList": true,
+        "createSearchPage": false,
+        "create404page": true,
+        "customHTML": {
+            "beforePost": "Before every post",
+            "afterPost": "After every post",
+            "beforePage": "Before every page",
+            "afterPage": "After every page"
+        }
+    },
+    "supportedFeatures": {
+        "blockEditor": true,
+        "tagsList": true,
+        "tagPages": true,
+        "tagImages": false,
+        "authorPages": true,
+        "authorImages": false,
+        "searchPage": false,
+        "errorPage": true,
+        "customSharing": true,
+        "customSearch": false,
+        "customComments": true,
+        "embedConsents": true,
+        "pages": true
+    },
+    "pageTemplates": {
+        "empty": "Empty container"
+    },
+    "config": [
+        {
+            "name": "postsPerPage",
+            "label": "Posts per page",
+            "value": 6,
+            "type": "number"
+        },
+        {
+            "name": "tagsPostsPerPage",
+            "label": "Tags posts per page",
+            "value": 6,
+            "type": "number"
+        },
+        {
+            "name": "authorsPostsPerPage",
+            "label": "Authors posts per page",
+            "value": 6,
+            "type": "number"
+        },
+        {
+            "name": "excerptLength",
+            "label": "Excerpt length",
+            "value": 25,
+            "type": "number"
+        },
+        {
+            "name": "logo",
+            "label": "Website logo",
+            "value": "",
+            "type": "upload",
+            "upload": true
+        }
+    ],
+    "customConfig": [
+        {
+            "name": "pageAligment",
+            "label": "Page aligment",
+            "group": "Layout",
+            "value": "left",
+            "type": "radio",
+            "options": [
+                {
+                    "label": "Left",
+                    "value": "left"
+                },
+                {
+                    "label": "Center",
+                    "value": "center"
+                }
+            ]
+        },
+        {
+            "name": "pageWidth",
+            "label": "Entry width",
+            "group": "Layout",
+            "note": "For full-screen width, set to 100%",
+            "value": "864px",
+            "type": "text"
+        },
+        {
+            "name": "separator",
+            "type": "separator",
+            "label": "Hero section",
+            "group": "Layout",
+            "size": "small"
+        },
+        {
+            "name": "hero",
+            "label": "On / Off",
+            "group": "Layout",
+            "value": true,
+            "type": "checkbox"
+        },
+        {
+            "name": "textHero",
+            "label": "Text",
+            "group": "Layout",
+            "value": "<h1>Welcome Aboard!</h1><p>Explore the unique features of the <code>Terminal</code> theme in this demo. Dive in and see if it meets your needs.</p><p>Initially created by <a href=\"https://github.com/panr\" target=\"_blank\" rel=\"nofollow\">Radoslaw Koziel</a>, this theme has been expertly ported to Publii CMS by the Publii Team.</p>",
+            "type": "wysiwyg",
+            "dependencies": [
+                {
+                    "field": "hero",
+                    "value": true
+                }
+            ]
+        },
+        {
+            "name": "separator",
+            "type": "separator",
+            "label": "Tags Page",
+            "note": "The settings below apply to the Tags page, which displays a comprehensive list of all published tags. For options specific to a single tag page, refer to the <a href=\"#\" data-internal-link=\"Tag options\">Tag options</a> tab.",
+            "group": "Layout",
+            "size": "big"
+        },
+        {
+            "name": "tagsTagCount",
+            "group": "Layout",
+            "label": "Show tag count",
+            "value": true,
+            "type": "checkbox"
+        },
+        {
+            "name": "tagsPostCount",
+            "group": "Layout",
+            "label": "Show post count",
+            "value": true,
+            "type": "checkbox"
+        },
+        {
+            "name": "separator",
+            "type": "separator",
+            "label": "",
+            "group": "Post list",
+            "note": "The Post list section offers a range of options for managing the post list displayed on the homepage, tag and author pages. In this area, you can easily enable or disable elements such as avatar, date or other elements.",
+            "size": "no-line"
+        },
+        {
+            "name": "listingFeaturedImage",
+            "group": "Post list",
+            "label": "Show featured image",
+            "value": true,
+            "type": "checkbox"
+        },
+        {
+            "name": "listingAuthor",
+            "group": "Post list",
+            "label": "Show author name",
+            "value": true,
+            "type": "checkbox"
+        },
+        {
+            "name": "listingDate",
+            "group": "Post list",
+            "label": "Show date",
+            "value": true,
+            "type": "checkbox"
+        },
+        {
+            "name": "listingTag",
+            "label": "Show tags",
+            "group": "Post list",
+            "value": "tags",
+            "type": "radio",
+            "options": [
+                {
+                    "label": "Tags list",
+                    "value": "tags"
+                },
+                {
+                    "label": "Main tag",
+                    "value": "maintag"
+                },
+                {
+                    "label": "None",
+                    "value": "none"
+                }
+            ]
+        },
+        {
+            "name": "listingReadMore",
+            "group": "Post list",
+            "label": "Show 'Read more' button",
+            "value": true,
+            "type": "checkbox"
+        },
+        {
+            "name": "separator",
+            "type": "separator",
+            "label": "Dropdown menu",
+            "group": "Navbar",
+            "size": "big"
+        },
+        {
+            "name": "submenu",
+            "label": "Width",
+            "group": "Navbar",
+            "value": "auto",
+            "type": "radio",
+            "options": [
+                {
+                    "label": "Auto",
+                    "value": "auto"
+                },
+                {
+                    "label": "Custom",
+                    "value": "custom"
+                }
+            ]
+        },
+        {
+            "name": "submenuWidth",
+            "group": "Navbar",
+            "note": "The submenu width in PX unit",
+            "label": "",
+            "value": "240",
+            "type": "range",
+            "min": 0,
+            "max": 1000,
+            "step": 10,
+            "dependencies": [
+                {
+                    "field": "submenu",
+                    "value": "custom"
+                }
+            ]
+        },
+        {
+            "name": "separator",
+            "type": "separator",
+            "label": "Mobile menu",
+            "group": "Navbar",
+            "size": "big"
+        },
+        {
+            "name": "mobilemenu",
+            "label": "Type",
+            "group": "Navbar",
+            "value": "sidebar",
+            "type": "radio",
+            "options": [
+                {
+                    "label": "Sidebar",
+                    "value": "sidebar"
+                },
+                {
+                    "label": "Overlay",
+                    "value": "overlay"
+                }
+            ]
+        },
+        {
+            "name": "mobilemenuExpandableSubmenus",
+            "label": "Expandable submenus",
+            "group": "Navbar",
+            "value": true,
+            "type": "checkbox"
+        },
+        {
+            "name": "accentColor",
+            "label": "Accent color",
+            "group": "Colors",
+            "note": "Predefined accents use the original Hugo Terminal palette. Choose 'Custom' to set your own.",
+            "value": "#eec35e",
+            "type": "select",
+            "options": [
+                {
+                    "label": "Golden (Terminal default)",
+                    "value": "#eec35e",
+                    "group": "Predefined"
+                },
+                {
+                    "label": "Orange",
+                    "value": "#FFA86A",
+                    "group": "Predefined"
+                },
+                {
+                    "label": "Blue",
+                    "value": "#23B0FF",
+                    "group": "Predefined"
+                },
+                {
+                    "label": "Green",
+                    "value": "#78E2A0",
+                    "group": "Predefined"
+                },
+                {
+                    "label": "Pink",
+                    "value": "#EE72F1",
+                    "group": "Predefined"
+                },
+                {
+                    "label": "Red",
+                    "value": "#FF6266",
+                    "group": "Predefined"
+                },
+                {
+                    "label": "Purple",
+                    "value": "#C48AF0",
+                    "group": "Predefined"
+                },
+                {
+                    "label": "Custom",
+                    "value": "custom",
+                    "group": "Custom"
+                }
+            ]
+        },
+        {
+            "name": "customAccentColor",
+            "label": "Custom accent color",
+            "group": "Colors",
+            "note": "Accepts HEX, RGB or HSL. Alpha values are ignored as they are determined by the theme styling.",
+            "value": "#eec35e",
+            "type": "colorpicker",
+            "dependencies": [
+                {
+                    "field": "accentColor",
+                    "value": "custom"
+                }
+            ]
+        },
+        {
+            "name": "colorScheme",
+            "label": "Color scheme",
+            "group": "Colors",
+            "note": "Dark keeps the original Terminal look (background is auto-derived from the accent). Light uses a bright background with dark text. Custom lets you pick both.",
+            "value": "dark",
+            "type": "radio",
+            "options": [
+                {
+                    "label": "Dark",
+                    "value": "dark"
+                },
+                {
+                    "label": "Light",
+                    "value": "light"
+                },
+                {
+                    "label": "Custom",
+                    "value": "custom"
+                }
+            ]
+        },
+        {
+            "name": "backgroundColor",
+            "label": "Background color",
+            "group": "Colors",
+            "note": "Accepts HEX, RGB or HSL.",
+            "value": "#1D1E28",
+            "type": "colorpicker",
+            "dependencies": [
+                {
+                    "field": "colorScheme",
+                    "value": "custom"
+                }
+            ]
+        },
+        {
+            "name": "textColor",
+            "label": "Text color",
+            "group": "Colors",
+            "note": "Accepts HEX, RGB or HSL. Use a value with enough contrast against the background.",
+            "value": "#FFFFFF",
+            "type": "colorpicker",
+            "dependencies": [
+                {
+                    "field": "colorScheme",
+                    "value": "custom"
+                }
+            ]
+        },
+        {
+            "name": "separator",
+            "type": "separator",
+            "label": "Main font settings",
+            "group": "Fonts",
+            "note": "To explore an extensive list of available fonts, along with detailed information about their typefaces, complete range of weights, and other specifications, please visit our <a href='https://getpublii.com/docs/fonts.html' target='_blank'>documentation</a>.",
+            "size": "small"
+        },
+        {
+            "name": "fontBody",
+            "label": "Body font",
+            "group": "Fonts",
+            "value": "system-ui",
+            "type": "select",
+            "options": [
+                {
+                    "label": "OS Default Font",
+                    "value": "system-ui",
+                    "group": "System"
+                },
+                {
+                    "label": "Aleo",
+                    "value": "aleo",
+                    "group": "Serif"
+                },
+                {
+                    "label": "Andada Pro",
+                    "value": "andadapro",
+                    "group": "Serif"
+                },
+                {
+                    "label": "Besley",
+                    "value": "besley",
+                    "group": "Serif"
+                },
+                {
+                    "label": "Bitter",
+                    "value": "bitter",
+                    "group": "Serif"
+                },
+                {
+                    "label": "Bodoni Moda",
+                    "value": "bodonimoda",
+                    "group": "Serif"
+                },
+                {
+                    "label": "Brygada 1918",
+                    "value": "brygada1918",
+                    "group": "Serif"
+                },
+                {
+                    "label": "Cinzel",
+                    "value": "cinzel",
+                    "group": "Serif"
+                },
+                {
+                    "label": "Danfo",
+                    "value": "danfo",
+                    "group": "Serif"
+                },
+                {
+                    "label": "Domine",
+                    "value": "domine",
+                    "group": "Serif"
+                },
+                {
+                    "label": "Faustina",
+                    "value": "faustina",
+                    "group": "Serif"
+                },
+                {
+                    "label": "Frank Ruhl Libre",
+                    "value": "frankruhllibre",
+                    "group": "Serif"
+                },
+                {
+                    "label": "Grenze Gotisch",
+                    "value": "grenzegotisch",
+                    "group": "Serif"
+                },
+                {
+                    "label": "Imbue",
+                    "value": "imbue",
+                    "group": "Serif"
+                },
+                {
+                    "label": "Kalnia",
+                    "value": "kalnia",
+                    "group": "Serif"
+                },
+                {
+                    "label": "Kreon",
+                    "value": "kreon",
+                    "group": "Serif"
+                },
+                {
+                    "label": "Labrada",
+                    "value": "labrada",
+                    "group": "Serif"
+                },
+                {
+                    "label": "Lora",
+                    "value": "lora",
+                    "group": "Serif"
+                },
+                {
+                    "label": "Manuale",
+                    "value": "manuale",
+                    "group": "Serif"
+                },
+                {
+                    "label": "Petrona",
+                    "value": "petrona",
+                    "group": "Serif"
+                },
+                {
+                    "label": "Playfair Display",
+                    "value": "playfairdisplay",
+                    "group": "Serif"
+                },
+                {
+                    "label": "Red Rose",
+                    "value": "redrose",
+                    "group": "Serif"
+                },
+                {
+                    "label": "Roboto Slab",
+                    "value": "robotoslab",
+                    "group": "Serif"
+                },
+                {
+                    "label": "Rokkitt",
+                    "value": "rokkitt",
+                    "group": "Serif"
+                },
+                {
+                    "label": "Yrsa",
+                    "value": "yrsa",
+                    "group": "Serif"
+                },
+                {
+                    "label": "Advent Pro",
+                    "value": "adventpro",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Albert Sans",
+                    "value": "albertsans",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Antonio",
+                    "value": "antonio",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Archivo Narrow",
+                    "value": "archivonarrow",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Asap",
+                    "value": "asap",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Assistant",
+                    "value": "assistant",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Cabin",
+                    "value": "cabin",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Cairo",
+                    "value": "cairo",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Comme",
+                    "value": "comme",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "DM Sans",
+                    "value": "dmsans",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Dosis",
+                    "value": "dosis",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Doto",
+                    "value": "doto",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Dyna Puff",
+                    "value": "dynapuff",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Exo",
+                    "value": "exo",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Familjen Grotesk",
+                    "value": "familjengrotesk",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Figtree",
+                    "value": "figtree",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Finlandica",
+                    "value": "finlandica",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Fredoka",
+                    "value": "fredoka",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Funnel Display",
+                    "value": "funneldisplay",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Gantari",
+                    "value": "gantari",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Glory",
+                    "value": "glory",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Handjet",
+                    "value": "handjet",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Heebo",
+                    "value": "heebo",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Host Grotesk",
+                    "value": "hostgrotesk",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Inclusive Sans",
+                    "value": "inclusivesans",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Instrument Sans",
+                    "value": "instrumentsans",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Jura",
+                    "value": "jura",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Karla",
+                    "value": "karla",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Kumbh Sans",
+                    "value": "kumbhsans",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "League Spartan",
+                    "value": "leaguespartan",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Lexend",
+                    "value": "lexend",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Lexend Deca",
+                    "value": "lexenddeca",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Libre Franklin",
+                    "value": "librefranklin",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Manrope",
+                    "value": "manrope",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Maven Pro",
+                    "value": "mavenpro",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Merriweather Sans",
+                    "value": "merriweathersans",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Montserrat",
+                    "value": "montserrat",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Mulish",
+                    "value": "mulish",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Nunito",
+                    "value": "nunito",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Orbitron",
+                    "value": "orbitron",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Oswald",
+                    "value": "oswald",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Outfit",
+                    "value": "outfit",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Oxanium",
+                    "value": "oxanium",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Parkinsans",
+                    "value": "parkinsans",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Plus Jakarta Sans",
+                    "value": "plusjakartasans",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Pontano Sans",
+                    "value": "pontanosans",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Public Sans",
+                    "value": "publicsans",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Quicksand",
+                    "value": "quicksand",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Radio Canada Big",
+                    "value": "radiocanadabig",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Raleway",
+                    "value": "raleway",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Red Hat Display",
+                    "value": "redhatdisplay",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Red Hat Text",
+                    "value": "redhattext",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "REM",
+                    "value": "rem",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Roboto Flex",
+                    "value": "robotoflex",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Rubik",
+                    "value": "rubik",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Ruda",
+                    "value": "ruda",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Smooch Sans",
+                    "value": "smoochsans",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Sora",
+                    "value": "sora",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Spartan",
+                    "value": "spartan",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Stick No Bills",
+                    "value": "sticknobills",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Teachers",
+                    "value": "teachers",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Tektur",
+                    "value": "tektur",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Tourney",
+                    "value": "tourney",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Urbanist",
+                    "value": "urbanist",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Varta",
+                    "value": "varta",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Wix Madefor Text",
+                    "value": "wixmadefortext",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Workbench",
+                    "value": "workbench",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Work Sans",
+                    "value": "worksans",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Yanone Kaffeesatz",
+                    "value": "yanonekaffeesatz",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Zalando Sans",
+                    "value": "zalandosans",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Zalando Sans Expanded",
+                    "value": "zalandosansexpanded",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Comfortaa",
+                    "value": "comfortaa",
+                    "group": "Cursive"
+                },
+                {
+                    "label": "Dancing Script",
+                    "value": "dancingscript",
+                    "group": "Cursive"
+                },
+                {
+                    "label": "Gluten",
+                    "value": "gluten",
+                    "group": "Cursive"
+                },
+                {
+                    "label": "Lemonada",
+                    "value": "lemonada",
+                    "group": "Cursive"
+                },
+                {
+                    "label": "Playwrite US Modern",
+                    "value": "playwriteusmodern",
+                    "group": "Cursive"
+                },
+                {
+                    "label": "Playwrite US Traditional",
+                    "value": "playwriteustrad",
+                    "group": "Cursive"
+                },
+                {
+                    "label": "Bitcount",
+                    "value": "bitcount",
+                    "group": "Monospace"
+                },
+                {
+                    "label": "Geist Mono",
+                    "value": "geistmono",
+                    "group": "Monospace"
+                },
+                {
+                    "label": "Google Sans Code",
+                    "value": "googlesanscode",
+                    "group": "Monospace"
+                },
+                {
+                    "label": "JetBrains Mono",
+                    "value": "jetbrainsmono",
+                    "group": "Monospace"
+                },
+                {
+                    "label": "Red Hat Mono",
+                    "value": "redhatmono",
+                    "group": "Monospace"
+                },
+                {
+                    "label": "Source Code Pro",
+                    "value": "sourcecodepro",
+                    "group": "Monospace"
+                },
+                {
+                    "label": "SUSE Mono",
+                    "value": "susemono",
+                    "group": "Monospace"
+                },
+                {
+                    "label": "Victor Mono",
+                    "value": "victormono",
+                    "group": "Monospace"
+                }
+            ]
+        },
+        {
+            "name": "disableFontBodyItalic",
+            "label": "Disable italic style",
+            "group": "Fonts",
+            "note": "This option allows you to disable the loading of the dedicated italic version for the body font. The italic font is automatically loaded when selecting a body font that supports it, like Lora, for optimal appearance. However, for performance reasons, you can choose to prevent loading the dedicated italic version by enabling this option.",
+            "type": "checkbox",
+            "value": false,
+            "dependencies": [
+                {
+                    "field": "fontBody",
+                    "value": "albertsans,adventpro,aleo,andadapro,archivonarrow,asap,besley,bitter,bodonimoda,brygada1918,cabin,dmsans,exo,familjengrotesk,faustina,figtree,finlandica,gantari,glory,googlesanscode,hostgrotesk,inclusivesans,instrumentsans,jetbrainsmono,karla,labrada,librefranklin,lora,manuale,merriweathersans,montserrat,mulish,nunito,petrona,playfairdisplay,plusjakartasans,publicsans,radiocanadabig,raleway,redhatdisplay,redhatmono,redhattext,rem,rokkitt,rubik,sourcecodepro,susemono,teachers,tourney,urbanist,victormono,wixmadefortext,worksans,zalandosans,zalandosansexpanded,yrsa"
+                }
+            ]
+        },
+        {
+            "name": "fontHeadings",
+            "label": "Headings font (H1-H6)",
+            "group": "Fonts",
+            "value": "system-ui",
+            "type": "select",
+            "options": [
+                {
+                    "label": "OS Default Font",
+                    "value": "system-ui",
+                    "group": "System"
+                },
+                {
+                    "label": "Aleo",
+                    "value": "aleo",
+                    "group": "Serif"
+                },
+                {
+                    "label": "Andada Pro",
+                    "value": "andadapro",
+                    "group": "Serif"
+                },
+                {
+                    "label": "Besley",
+                    "value": "besley",
+                    "group": "Serif"
+                },
+                {
+                    "label": "Bitter",
+                    "value": "bitter",
+                    "group": "Serif"
+                },
+                {
+                    "label": "Bodoni Moda",
+                    "value": "bodonimoda",
+                    "group": "Serif"
+                },
+                {
+                    "label": "Brygada 1918",
+                    "value": "brygada1918",
+                    "group": "Serif"
+                },
+                {
+                    "label": "Cinzel",
+                    "value": "cinzel",
+                    "group": "Serif"
+                },
+                {
+                    "label": "Danfo",
+                    "value": "danfo",
+                    "group": "Serif"
+                },
+                {
+                    "label": "Domine",
+                    "value": "domine",
+                    "group": "Serif"
+                },
+                {
+                    "label": "Faustina",
+                    "value": "faustina",
+                    "group": "Serif"
+                },
+                {
+                    "label": "Frank Ruhl Libre",
+                    "value": "frankruhllibre",
+                    "group": "Serif"
+                },
+                {
+                    "label": "Grenze Gotisch",
+                    "value": "grenzegotisch",
+                    "group": "Serif"
+                },
+                {
+                    "label": "Imbue",
+                    "value": "imbue",
+                    "group": "Serif"
+                },
+                {
+                    "label": "Kalnia",
+                    "value": "kalnia",
+                    "group": "Serif"
+                },
+                {
+                    "label": "Kreon",
+                    "value": "kreon",
+                    "group": "Serif"
+                },
+                {
+                    "label": "Labrada",
+                    "value": "labrada",
+                    "group": "Serif"
+                },
+                {
+                    "label": "Lora",
+                    "value": "lora",
+                    "group": "Serif"
+                },
+                {
+                    "label": "Manuale",
+                    "value": "manuale",
+                    "group": "Serif"
+                },
+                {
+                    "label": "Petrona",
+                    "value": "petrona",
+                    "group": "Serif"
+                },
+                {
+                    "label": "Playfair Display",
+                    "value": "playfairdisplay",
+                    "group": "Serif"
+                },
+                {
+                    "label": "Red Rose",
+                    "value": "redrose",
+                    "group": "Serif"
+                },
+                {
+                    "label": "Roboto Slab",
+                    "value": "robotoslab",
+                    "group": "Serif"
+                },
+                {
+                    "label": "Rokkitt",
+                    "value": "rokkitt",
+                    "group": "Serif"
+                },
+                {
+                    "label": "Yrsa",
+                    "value": "yrsa",
+                    "group": "Serif"
+                },
+                {
+                    "label": "Advent Pro",
+                    "value": "adventpro",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Albert Sans",
+                    "value": "albertsans",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Antonio",
+                    "value": "antonio",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Archivo Narrow",
+                    "value": "archivonarrow",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Asap",
+                    "value": "asap",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Assistant",
+                    "value": "assistant",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Cabin",
+                    "value": "cabin",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Cairo",
+                    "value": "cairo",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Comme",
+                    "value": "comme",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "DM Sans",
+                    "value": "dmsans",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Dosis",
+                    "value": "dosis",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Doto",
+                    "value": "doto",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Dyna Puff",
+                    "value": "dynapuff",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Exo",
+                    "value": "exo",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Familjen Grotesk",
+                    "value": "familjengrotesk",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Figtree",
+                    "value": "figtree",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Finlandica",
+                    "value": "finlandica",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Fredoka",
+                    "value": "fredoka",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Funnel Display",
+                    "value": "funneldisplay",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Gantari",
+                    "value": "gantari",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Glory",
+                    "value": "glory",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Handjet",
+                    "value": "handjet",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Heebo",
+                    "value": "heebo",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Host Grotesk",
+                    "value": "hostgrotesk",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Inclusive Sans",
+                    "value": "inclusivesans",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Instrument Sans",
+                    "value": "instrumentsans",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Jura",
+                    "value": "jura",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Karla",
+                    "value": "karla",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Kumbh Sans",
+                    "value": "kumbhsans",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "League Spartan",
+                    "value": "leaguespartan",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Lexend",
+                    "value": "lexend",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Lexend Deca",
+                    "value": "lexenddeca",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Libre Franklin",
+                    "value": "librefranklin",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Manrope",
+                    "value": "manrope",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Maven Pro",
+                    "value": "mavenpro",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Merriweather Sans",
+                    "value": "merriweathersans",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Montserrat",
+                    "value": "montserrat",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Mulish",
+                    "value": "mulish",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Nunito",
+                    "value": "nunito",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Orbitron",
+                    "value": "orbitron",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Oswald",
+                    "value": "oswald",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Outfit",
+                    "value": "outfit",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Oxanium",
+                    "value": "oxanium",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Parkinsans",
+                    "value": "parkinsans",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Plus Jakarta Sans",
+                    "value": "plusjakartasans",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Pontano Sans",
+                    "value": "pontanosans",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Public Sans",
+                    "value": "publicsans",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Quicksand",
+                    "value": "quicksand",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Radio Canada Big",
+                    "value": "radiocanadabig",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Raleway",
+                    "value": "raleway",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Red Hat Display",
+                    "value": "redhatdisplay",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Red Hat Text",
+                    "value": "redhattext",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "REM",
+                    "value": "rem",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Roboto Flex",
+                    "value": "robotoflex",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Rubik",
+                    "value": "rubik",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Ruda",
+                    "value": "ruda",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Smooch Sans",
+                    "value": "smoochsans",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Sora",
+                    "value": "sora",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Spartan",
+                    "value": "spartan",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Stick No Bills",
+                    "value": "sticknobills",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Teachers",
+                    "value": "teachers",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Tektur",
+                    "value": "tektur",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Tourney",
+                    "value": "tourney",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Urbanist",
+                    "value": "urbanist",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Varta",
+                    "value": "varta",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Wix Madefor Text",
+                    "value": "wixmadefortext",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Workbench",
+                    "value": "workbench",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Work Sans",
+                    "value": "worksans",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Yanone Kaffeesatz",
+                    "value": "yanonekaffeesatz",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Zalando Sans",
+                    "value": "zalandosans",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Zalando Sans Expanded",
+                    "value": "zalandosansexpanded",
+                    "group": "Sans Serif"
+                },
+                {
+                    "label": "Comfortaa",
+                    "value": "comfortaa",
+                    "group": "Cursive"
+                },
+                {
+                    "label": "Dancing Script",
+                    "value": "dancingscript",
+                    "group": "Cursive"
+                },
+                {
+                    "label": "Gluten",
+                    "value": "gluten",
+                    "group": "Cursive"
+                },
+                {
+                    "label": "Lemonada",
+                    "value": "lemonada",
+                    "group": "Cursive"
+                },
+                {
+                    "label": "Playwrite US Modern",
+                    "value": "playwriteusmodern",
+                    "group": "Cursive"
+                },
+                {
+                    "label": "Playwrite US Traditional",
+                    "value": "playwriteustrad",
+                    "group": "Cursive"
+                },
+                {
+                    "label": "Bitcount",
+                    "value": "bitcount",
+                    "group": "Monospace"
+                },
+                {
+                    "label": "Geist Mono",
+                    "value": "geistmono",
+                    "group": "Monospace"
+                },
+                {
+                    "label": "Google Sans Code",
+                    "value": "googlesanscode",
+                    "group": "Monospace"
+                },
+                {
+                    "label": "JetBrains Mono",
+                    "value": "jetbrainsmono",
+                    "group": "Monospace"
+                },
+                {
+                    "label": "Red Hat Mono",
+                    "value": "redhatmono",
+                    "group": "Monospace"
+                },
+                {
+                    "label": "Source Code Pro",
+                    "value": "sourcecodepro",
+                    "group": "Monospace"
+                },
+                {
+                    "label": "SUSE Mono",
+                    "value": "susemono",
+                    "group": "Monospace"
+                },
+                {
+                    "label": "Victor Mono",
+                    "value": "victormono",
+                    "group": "Monospace"
+                }
+            ]
+        },
+        {
+            "name": "disableFontHeadingsItalic",
+            "label": "Disable italic style",
+            "group": "Fonts",
+            "note": "This option allows you to disable loading of the dedicated italic version for the headings font. The italic font is automatically loaded when selecting a headings font that supports it, like Lora, for optimal appearance. However, for performance reasons, you can choose to prevent loading of the dedicated italic version by enabling this option.",
+            "type": "checkbox",
+            "value": false,
+            "dependencies": [
+                {
+                    "field": "fontHeadings",
+                    "value": "albertsans,adventpro,aleo,andadapro,archivonarrow,asap,besley,bitter,bodonimoda,brygada1918,cabin,dmsans,exo,familjengrotesk,faustina,figtree,finlandica,gantari,glory,googlesanscode,hostgrotesk,inclusivesans,instrumentsans,jetbrainsmono,karla,labrada,librefranklin,lora,manuale,merriweathersans,montserrat,mulish,nunito,petrona,playfairdisplay,plusjakartasans,publicsans,radiocanadabig,raleway,redhatdisplay,redhatmono,redhattext,rem,rokkitt,rubik,sourcecodepro,susemono,teachers,tourney,urbanist,victormono,wixmadefortext,worksans,zalandosans,zalandosansexpanded,yrsa"
+                }
+            ]
+        },
+        {
+            "name": "fontMenu",
+            "label": "Menu font",
+            "group": "Fonts",
+            "value": "var(--body-font)",
+            "type": "select",
+            "options": [
+                {
+                    "label": "OS Default Font",
+                    "value": "system-ui"
+                },
+                {
+                    "label": "Select the font used for the Body",
+                    "value": "var(--body-font)"
+                },
+                {
+                    "label": "Select the font used for the Headings",
+                    "value": "var(--heading-font)"
+                }
+            ]
+        },
+        {
+            "name": "fontLogo",
+            "label": "Logo font",
+            "group": "Fonts",
+            "value": "var(--body-font)",
+            "type": "select",
+            "options": [
+                {
+                    "label": "OS Default Font",
+                    "value": "system-ui"
+                },
+                {
+                    "label": "Select the font used for the Body",
+                    "value": "var(--body-font)"
+                },
+                {
+                    "label": "Select the font used for the Headings",
+                    "value": "var(--heading-font)"
+                }
+            ]
+        },
+        {
+            "name": "separator",
+            "type": "separator",
+            "label": "",
+            "group": "Fonts",
+            "size": "big thin"
+        },
+        {
+            "name": "minFontSize",
+            "label": "Minimum font size",
+            "group": "Fonts",
+            "note": "The font-size of the root element in REM unit",
+            "value": "1",
+            "type": "range",
+            "min": 1,
+            "max": 3,
+            "step": 0.05
+        },
+        {
+            "name": "maxFontSize",
+            "label": "Maximum font size",
+            "group": "Fonts",
+            "note": "The font-size of the root element in REM unit",
+            "value": "1",
+            "type": "range",
+            "min": 1,
+            "max": 3,
+            "step": 0.05
+        },
+        {
+            "name": "lineHeight",
+            "label": "Line height",
+            "group": "Fonts",
+            "note": "The default line-height for text within body elements, excluding headings.",
+            "value": "1.5",
+            "type": "range",
+            "min": 1,
+            "max": 3,
+            "step": 0.05
+        },
+        {
+            "name": "letterSpacing",
+            "label": "Letter spacing",
+            "group": "Fonts",
+            "note": "Adjusts the spacing between characters for body text elements, excluding headings, in EM.",
+            "value": "-0.02",
+            "type": "range",
+            "min": -1,
+            "max": 1,
+            "step": 0.01
+        },
+        {
+            "name": "separator",
+            "type": "separator",
+            "label": "",
+            "group": "Fonts",
+            "note": "Note that not all fonts support the full range of weights; instead, they will typically support a standard range between 400 and 700. To see the exact range available for the selected body font, please visit our <a href='https://getpublii.com/docs/fonts.html' target='_blank'>documentation</a>.",
+            "size": "small thin"
+        },
+        {
+            "name": "fontBodyWeight",
+            "label": "Normal font weight",
+            "group": "Fonts",
+            "value": "400",
+            "type": "range",
+            "min": 100,
+            "max": 900,
+            "step": 1
+        },
+        {
+            "name": "fontBoldWeight",
+            "label": "Bold font weight",
+            "group": "Fonts",
+            "value": "700",
+            "type": "range",
+            "min": 100,
+            "max": 900,
+            "step": 1
+        },
+        {
+            "name": "separator",
+            "type": "separator",
+            "label": "Headings",
+            "group": "Fonts",
+            "size": "big"
+        },
+        {
+            "name": "fontHeadignsWeight",
+            "label": "H1-H6 font weight",
+            "group": "Fonts",
+            "value": "700",
+            "type": "range",
+            "min": 100,
+            "max": 900,
+            "step": 1
+        },
+        {
+            "name": "fontHeadingsStyle",
+            "label": "H1-H6 font style",
+            "group": "Fonts",
+            "value": "normal",
+            "type": "select",
+            "options": [
+                {
+                    "label": "Normal",
+                    "value": "normal"
+                },
+                {
+                    "label": "Italic",
+                    "value": "italic"
+                },
+                {
+                    "label": "Oblique",
+                    "value": "oblique"
+                }
+            ]
+        },
+        {
+            "name": "fontHeadingsLineHeight",
+            "label": "H1-H6 line height",
+            "group": "Fonts",
+            "note": "The default line-height for heading elements (h1, h2, h3, etc.).",
+            "value": "1.3",
+            "type": "range",
+            "min": 1,
+            "max": 3,
+            "step": 0.05
+        },
+        {
+            "name": "fontHeadingsletterSpacing",
+            "label": "H1-H6 letter spacing",
+            "group": "Fonts",
+            "note": "Adjusts the spacing between characters for heading elements (h1, h2, h3, etc.) in EM.",
+            "value": "-0.02",
+            "type": "range",
+            "min": -1,
+            "max": 1,
+            "step": 0.01
+        },
+        {
+            "name": "fontHeadingsTransform",
+            "label": "H1-H6 text transform",
+            "group": "Fonts",
+            "value": "none",
+            "type": "select",
+            "options": [
+                {
+                    "label": "None",
+                    "value": "none"
+                },
+                {
+                    "label": "Capitalize",
+                    "value": "capitalize"
+                },
+                {
+                    "label": "Lowercase",
+                    "value": "lowercase"
+                },
+                {
+                    "label": "Uppercase",
+                    "value": "uppercase"
+                }
+            ]
+        },
+        {
+            "name": "separator",
+            "type": "separator",
+            "label": "",
+            "group": "Share Buttons",
+            "note": "This section allows you to choose your preferred share buttons for various platforms. If you wish to add more, you can install the <a href='https://marketplace.getpublii.com/plugins/social-sharing/' target='_blank'>Social Sharing plugin</a> available on the Publii Marketplace.",
+            "size": "no-line"
+        },
+        {
+            "name": "shareFacebook",
+            "group": "Share Buttons",
+            "label": "Facebook",
+            "value": false,
+            "type": "checkbox"
+        },
+        {
+            "name": "shareTwitter",
+            "group": "Share Buttons",
+            "label": "X (formerly Twitter)",
+            "value": false,
+            "type": "checkbox"
+        },
+        {
+            "name": "shareTwitterName",
+            "group": "Share Buttons",
+            "note": "Enter your X account's handle here; it will be used when the X share button is clicked on your site e.g. 'via @XHandle'. If left blank, the default username of @SiteName will be used",
+            "value": "",
+            "type": "text",
+            "dependencies": [
+                {
+                    "field": "shareTwitter",
+                    "value": "true"
+                }
+            ]
+        },
+        {
+            "name": "sharePinterest",
+            "group": "Share Buttons",
+            "label": "Pinterest",
+            "value": false,
+            "type": "checkbox"
+        },
+        {
+            "name": "shareMix",
+            "group": "Share Buttons",
+            "label": "Mix (formerly StumbleUpon)",
+            "value": false,
+            "type": "checkbox"
+        },
+        {
+            "name": "shareLinkedin",
+            "group": "Share Buttons",
+            "label": "LinkedIn",
+            "value": false,
+            "type": "checkbox"
+        },
+        {
+            "name": "shareBuffer",
+            "group": "Share Buttons",
+            "label": "Buffer",
+            "value": false,
+            "type": "checkbox"
+        },
+        {
+            "name": "shareWhatsApp",
+            "group": "Share Buttons",
+            "label": "WhatsApp",
+            "value": false,
+            "type": "checkbox"
+        },
+        {
+            "name": "separator",
+            "type": "separator",
+            "label": "",
+            "group": "Footer",
+            "note": "This section allows you to add follow buttons for various social media platforms. If you want to expand the available options, you can install the <a href='https://marketplace.getpublii.com/plugins/follow-buttons/' target='_blank'>Follow Buttons plugin</a> available on the Publii Marketplace.",
+            "size": "no-line"
+        },
+        {
+            "name": "socialButtons",
+            "group": "Footer",
+            "label": "Follow Buttons",
+            "value": false,
+            "type": "checkbox"
+        },
+        {
+            "name": "socialFacebook",
+            "label": "Facebook",
+            "group": "Footer",
+            "placeholder": "Please enter your Facebook URL",
+            "value": "",
+            "type": "text",
+            "dependencies": [
+                {
+                    "field": "socialButtons",
+                    "value": "true"
+                }
+            ]
+        },
+        {
+            "name": "socialTwitter",
+            "label": "X (formerly Twitter)",
+            "group": "Footer",
+            "placeholder": "Please enter your X URL",
+            "value": "",
+            "type": "text",
+            "dependencies": [
+                {
+                    "field": "socialButtons",
+                    "value": "true"
+                }
+            ]
+        },
+        {
+            "name": "socialInstagram",
+            "label": "Instagram",
+            "group": "Footer",
+            "placeholder": "Please enter your Instagram URL",
+            "value": "",
+            "type": "text",
+            "dependencies": [
+                {
+                    "field": "socialButtons",
+                    "value": "true"
+                }
+            ]
+        },
+        {
+            "name": "socialLinkedin",
+            "label": "LinkedIn",
+            "group": "Footer",
+            "placeholder": "Please enter your LinkedIn URL",
+            "value": "",
+            "type": "text",
+            "dependencies": [
+                {
+                    "field": "socialButtons",
+                    "value": "true"
+                }
+            ]
+        },
+        {
+            "name": "socialVimeo",
+            "label": "Vimeo",
+            "group": "Footer",
+            "placeholder": "Please enter your Vimeo URL",
+            "value": "",
+            "type": "text",
+            "dependencies": [
+                {
+                    "field": "socialButtons",
+                    "value": "true"
+                }
+            ]
+        },
+        {
+            "name": "socialPinterest",
+            "label": "Pinterest",
+            "group": "Footer",
+            "placeholder": "Please enter your Pinterest URL",
+            "value": "",
+            "type": "text",
+            "dependencies": [
+                {
+                    "field": "socialButtons",
+                    "value": "true"
+                }
+            ]
+        },
+        {
+            "name": "socialYoutube",
+            "label": "Youtube",
+            "group": "Footer",
+            "placeholder": "Please enter your Youtube URL",
+            "value": "",
+            "type": "text",
+            "dependencies": [
+                {
+                    "field": "socialButtons",
+                    "value": "true"
+                }
+            ]
+        },
+        {
+            "name": "separator",
+            "type": "separator",
+            "label": "",
+            "group": "Footer",
+            "size": "small thin"
+        },
+        {
+            "name": "copyrightText",
+            "label": "Copyright text",
+            "group": "Footer",
+            "value": "<p>© 2024 Powered by Publii CMS :: <a href=\"https://github.com/panr/hugo-theme-terminal\" target=\"_blank\" rel=\"noopener\">Theme</a> ported by the <a href=\"https://getpublii.com/customization-service/\" target=\"_blank\" rel=\"noopener\">Publii Team</a></p> ",
+            "type": "wysiwyg"
+        },
+        {
+            "name": "separator",
+            "type": "separator",
+            "label": "",
+            "group": "Gallery",
+            "note": "To use the gallery functionality, you need to install the appropriate plugin. Please check the available gallery plugins in the <a rel=\"noopener noreferrer\" href=\"https://marketplace.getpublii.com/plugins/\" target=\"_blank\">Publii Marketplace</a>.",
+            "size": "no-line"
+        },
+        {
+            "name": "galleryItemGap",
+            "label": "Gallery item spacing",
+            "group": "Gallery",
+            "note": "Use of REM units recommended but you can also use others (px, vw,)",
+            "value": "0.25rem",
+            "type": "text"
+        },
+        {
+            "name": "formatDate",
+            "label": "Date format",
+            "group": "Additional",
+            "value": "YYYY.MM.DD",
+            "type": "select",
+            "options": [
+                {
+                    "label": "2016.11.01",
+                    "value": "YYYY.MM.DD"
+                },
+                {
+                    "label": "2016/11/01",
+                    "value": "YYYY/MM/DD"
+                },
+                {
+                    "label": "2016-11-01",
+                    "value": "YYYY-MM-DD"
+                },
+                {
+                    "label": "Nov 1, 2016",
+                    "value": "MMM D, YYYY"
+                },
+                {
+                    "label": "1 Nov 2016",
+                    "value": "D MMM YYYY"
+                },
+                {
+                    "label": "November 1, 2016",
+                    "value": "MMMM D, YYYY"
+                },
+                {
+                    "label": "1 November 2016",
+                    "value": "D MMMM YYYY"
+                },
+                {
+                    "label": "Sunday, November 1, 2016",
+                    "value": "dddd, MMMM D, YYYY"
+                },
+                {
+                    "label": "Sunday, 1 November 2016",
+                    "value": "dddd, D MMMM YYYY"
+                },
+                {
+                    "label": "November 1, 2016 10:02:05",
+                    "value": "MMMM D, YYYY HH:mm:ss"
+                },
+                {
+                    "label": "1 November 2016 10:02:05",
+                    "value": "D MMMM YYYY HH:mm:ss"
+                },
+                {
+                    "label": "01/21/2016",
+                    "value": "MM/DD/YYYY"
+                },
+                {
+                    "label": "21/01/2016",
+                    "value": "DD/MM/YYYY"
+                },
+                {
+                    "label": "Custom - create your own date format",
+                    "value": "custom"
+                }
+            ]
+        },
+        {
+            "name": "formatDateCustom",
+            "group": "Additional",
+            "label": "Create a custom date format",
+            "note": "More details you can find <a href='https://github.com/taylorhakes/fecha' target='_blank'>here.</a>",
+            "value": "HH:mm:ss YY/MM/DD",
+            "type": "text",
+            "dependencies": [
+                {
+                    "field": "formatDate",
+                    "value": "custom"
+                }
+            ]
+        },
+        {
+            "name": "separator",
+            "type": "separator",
+            "label": "",
+            "group": "Additional",
+            "size": "small"
+        },
+        {
+            "name": "lazyLoadEffect",
+            "label": "Lazy load effects",
+            "group": "Additional",
+            "note": "This option works only if the 'Media lazy load' option is enabled in the Website Speed tab under Site Settings",
+            "value": "fadein",
+            "type": "select",
+            "options": [
+                {
+                    "label": "Fade in",
+                    "value": "fadein"
+                },
+                {
+                    "label": "None",
+                    "value": "none"
+                }
+            ]
+        },
+        {
+            "name": "separator",
+            "type": "separator",
+            "label": "",
+            "group": "Additional",
+            "size": "small"
+        },
+        {
+            "name": "faviconUpload",
+            "label": "Upload favicon file",
+            "group": "Additional",
+            "note": "The ideal size of a favicon is 16x16 pixels. Save your favicon as either favicon.png or favicon.ico",
+            "value": "",
+            "type": "smallupload",
+            "upload": true
+        },
+        {
+            "name": "faviconExtension",
+            "label": "Favicon extension",
+            "group": "Additional",
+            "value": "image/x-icon",
+            "type": "select",
+            "options": [
+                {
+                    "label": ".ico",
+                    "value": "image/x-icon"
+                },
+                {
+                    "label": ".png",
+                    "value": "image/png"
+                }
+            ]
+        }
+    ],
+    "postConfig": [
+        {
+            "name": "displayDate",
+            "label": "Display date",
+            "value": 1,
+            "type": "select",
+            "options": [
+                {
+                    "label": "Enabled",
+                    "value": 1
+                },
+                {
+                    "label": "Disabled",
+                    "value": 0
+                }
+            ]
+        },
+        {
+            "name": "displayAuthor",
+            "label": "Display author",
+            "value": 1,
+            "type": "select",
+            "options": [
+                {
+                    "label": "Enabled",
+                    "value": 1
+                },
+                {
+                    "label": "Disabled",
+                    "value": 0
+                }
+            ]
+        },
+        {
+            "name": "displayLastUpdatedDate",
+            "label": "Display last updated date",
+            "value": 1,
+            "type": "select",
+            "options": [
+                {
+                    "label": "Enabled",
+                    "value": 1
+                },
+                {
+                    "label": "Disabled",
+                    "value": 0
+                }
+            ]
+        },
+        {
+            "name": "displayTags",
+            "label": "Display tags",
+            "value": 1,
+            "type": "select",
+            "options": [
+                {
+                    "label": "Enabled",
+                    "value": 1
+                },
+                {
+                    "label": "Disabled",
+                    "value": 0
+                }
+            ]
+        },
+        {
+            "name": "displayShareButtons",
+            "label": "Display share buttons",
+            "value": 1,
+            "type": "select",
+            "options": [
+                {
+                    "label": "Enabled",
+                    "value": 1
+                },
+                {
+                    "label": "Disabled",
+                    "value": 0
+                }
+            ]
+        },
+        {
+            "name": "displayPostNavigation",
+            "label": "Display post navigation",
+            "value": 1,
+            "type": "select",
+            "options": [
+                {
+                    "label": "Enabled",
+                    "value": 1
+                },
+                {
+                    "label": "Disabled",
+                    "value": 0
+                }
+            ]
+        },
+        {
+            "name": "displayComments",
+            "label": "Display comments",
+            "value": 0,
+            "type": "select",
+            "options": [
+                {
+                    "label": "Enabled",
+                    "value": 1
+                },
+                {
+                    "label": "Disabled",
+                    "value": 0
+                }
+            ]
+        }
+    ],
+    "pageConfig": [
+        {
+            "name": "displayDate",
+            "label": "Display date",
+            "value": 0,
+            "type": "select",
+            "pageTemplates": "!empty",
+            "options": [
+                {
+                    "label": "Enabled",
+                    "value": 1
+                },
+                {
+                    "label": "Disabled",
+                    "value": 0
+                }
+            ]
+        },
+        {
+            "name": "displayAuthor",
+            "label": "Display author",
+            "value": 0,
+            "type": "select",
+            "pageTemplates": "!empty",
+            "options": [
+                {
+                    "label": "Enabled",
+                    "value": 1
+                },
+                {
+                    "label": "Disabled",
+                    "value": 0
+                }
+            ]
+        },
+        {
+            "name": "displayLastUpdatedDate",
+            "label": "Display last updated date",
+            "value": 0,
+            "type": "select",
+            "pageTemplates": "!empty",
+            "options": [
+                {
+                    "label": "Enabled",
+                    "value": 1
+                },
+                {
+                    "label": "Disabled",
+                    "value": 0
+                }
+            ]
+        },
+        {
+            "name": "displayShareButtons",
+            "label": "Display share buttons",
+            "value": 0,
+            "type": "select",
+            "pageTemplates": "!empty",
+            "options": [
+                {
+                    "label": "Enabled",
+                    "value": 1
+                },
+                {
+                    "label": "Disabled",
+                    "value": 0
+                }
+            ]
+        },
+        {
+            "name": "displayChildPages",
+            "label": "Display child pages",
+            "value": 0,
+            "type": "select",
+            "options": [
+                {
+                    "label": "Enabled",
+                    "value": 1
+                },
+                {
+                    "label": "Disabled",
+                    "value": 0
+                }
+            ]
+        },
+        {
+            "name": "displayComments",
+            "label": "Display comments",
+            "value": 0,
+            "type": "select",
+            "pageTemplates": "!empty",
+            "options": [
+                {
+                    "label": "Enabled",
+                    "value": 1
+                },
+                {
+                    "label": "Disabled",
+                    "value": 0
+                }
+            ]
+        }
+    ],
+    "authorConfig": [
+        {
+            "name": "displayAvatar",
+            "label": "Display avatar",
+            "value": 1,
+            "type": "select",
+            "options": [
+                {
+                    "label": "Enabled",
+                    "value": 1
+                },
+                {
+                    "label": "Disabled",
+                    "value": 0
+                }
+            ]
+        },
+        {
+            "name": "displayPostCounter",
+            "label": "Display post counter",
+            "value": 1,
+            "type": "select",
+            "options": [
+                {
+                    "label": "Enabled",
+                    "value": 1
+                },
+                {
+                    "label": "Disabled",
+                    "value": 0
+                }
+            ]
+        },
+        {
+            "name": "displayDescription",
+            "label": "Display author biography",
+            "value": 1,
+            "type": "select",
+            "options": [
+                {
+                    "label": "Enabled",
+                    "value": 1
+                },
+                {
+                    "label": "Disabled",
+                    "value": 0
+                }
+            ]
+        },
+        {
+            "name": "displayWebsite",
+            "label": "Display author website",
+            "value": 1,
+            "type": "select",
+            "options": [
+                {
+                    "label": "Enabled",
+                    "value": 1
+                },
+                {
+                    "label": "Disabled",
+                    "value": 0
+                }
+            ]
+        },
+        {
+            "name": "displayPostList",
+            "label": "Display post list",
+            "note": "Disabling the post list can cause duplicate content issues. To avoid this, please disable authors pagination in the SEO section of your site settings.",
+            "value": 1,
+            "type": "select",
+            "options": [
+                {
+                    "label": "Enabled",
+                    "value": 1
+                },
+                {
+                    "label": "Disabled",
+                    "value": 0
+                }
+            ]
+        }
+    ],
+    "tagConfig": [
+        {
+            "name": "displayPostCounter",
+            "label": "Display post counter",
+            "value": 1,
+            "type": "select",
+            "options": [
+                {
+                    "label": "Enabled",
+                    "value": 1
+                },
+                {
+                    "label": "Disabled",
+                    "value": 0
+                }
+            ]
+        },
+        {
+            "name": "displayDescription",
+            "label": "Display tag description",
+            "value": 1,
+            "type": "select",
+            "options": [
+                {
+                    "label": "Enabled",
+                    "value": 1
+                },
+                {
+                    "label": "Disabled",
+                    "value": 0
+                }
+            ]
+        },
+        {
+            "name": "displayPostList",
+            "label": "Display post list",
+            "note": "Disabling the post list can cause duplicate content issues. To avoid this, please disable tag pagination in the SEO section of your site settings.",
+            "value": 1,
+            "type": "select",
+            "options": [
+                {
+                    "label": "Enabled",
+                    "value": 1
+                },
+                {
+                    "label": "Disabled",
+                    "value": 0
+                }
+            ]
+        }
+    ],
+    "files": {
+        "ignoreAssets": [
+            "scss",
+            ".DS_Store"
+        ],
+        "assetsPath": "assets",
+        "useDynamicAssets": true,
+        "partialsPath": "partials",
+        "responsiveImages": {
+            "contentImages": {
+                "sizes": "(min-width: 920px) 703px, (min-width: 700px) calc(82vw - 35px), calc(100vw - 81px)",
+                "dimensions": {
+                    "xs": {
+                        "width": 300,
+                        "height": "auto"
+                    },
+                    "sm": {
+                        "width": 480,
+                        "height": "auto"
+                    },
+                    "md": {
+                        "width": 768,
+                        "height": "auto"
+                    },
+                    "lg": {
+                        "width": 1024,
+                        "height": "auto"
+                    }
+                }
+            },
+            "featuredImages": {
+                "sizes": "(min-width: 920px) 703px, (min-width: 700px) calc(82vw - 35px), calc(100vw - 81px)",
+                "dimensions": {
+                    "xs": {
+                        "width": 300,
+                        "height": "auto"
+                    },
+                    "sm": {
+                        "width": 480,
+                        "height": "auto"
+                    },
+                    "md": {
+                        "width": 768,
+                        "height": "auto"
+                    },
+                    "lg": {
+                        "width": 1024,
+                        "height": "auto"
+                    }
+                }
+            },
+            "optionImages": {
+                "sizes": "(min-width: 920px) 703px, (min-width: 700px) calc(82vw - 35px), calc(100vw - 81px)",
+                "dimensions": {
+                    "xs": {
+                        "width": 300,
+                        "height": 255,
+                        "crop": true
+                    },
+                    "sm": {
+                        "width": 480,
+                        "height": "auto"
+                    },
+                    "md": {
+                        "width": 768,
+                        "height": "auto"
+                    },
+                    "lg": {
+                        "width": 1024,
+                        "height": "auto"
+                    }
+                }
+            },
+            "galleryImages": {
+                "sizes": "",
+                "dimensions": {
+                    "thumbnail": {
+                        "width": 768,
+                        "height": "auto"
+                    }
+                }
+            }
+        }
+    },
+    "customElements": [
+        {
+            "label": "Drop cap",
+            "cssClasses": "dropcap",
+            "selector": "p"
+        },
+        {
+            "label": "Info",
+            "cssClasses": "msg msg--info",
+            "selector": "p"
+        },
+        {
+            "label": "Highlight",
+            "cssClasses": "msg msg--highlight ",
+            "selector": "p"
+        },
+        {
+            "label": "Success",
+            "cssClasses": "msg msg--success",
+            "selector": "p"
+        },
+        {
+            "label": "Warning",
+            "cssClasses": "msg msg--warning",
+            "selector": "p"
+        },
+        {
+            "label": "Button default",
+            "cssClasses": "btn",
+            "selector": "a"
+        },
+        {
+            "label": "Button outline",
+            "cssClasses": "btn btn--outline",
+            "selector": "a, button, input[type=button], input[type=submit]"
+        },
+        {
+            "label": "Button link",
+            "cssClasses": "btn btn--link",
+            "selector": "a, button, input[type=button], input[type=submit]"
+        }
+    ]
+}

@@ -1,0 +1,118 @@
+{{> head}}
+{{> navbar}}
+<main class="content page">
+   {{#page}}
+      {{#if @customHTML.beforePage}}
+         <div class="banner banner--before-post">
+            {{{@customHTML.beforePage}}}
+         </div>
+      {{/if}}
+      <article class="post">      
+         <header>
+            <h1 class="post__title">{{title}}</h1>
+            {{#checkIfAny @config.page.displayDate @config.page.displayAuthor}}
+               <div class="post__meta">
+                  {{#if @config.page.displayDate}}
+                     <time datetime="{{date createdAt 'YYYY-MM-DDTHH:mm'}}" class="post__date">
+                        {{#checkIf @config.custom.formatDate '!=' 'custom'}}
+                           {{date createdAt @config.custom.formatDate}}
+                        {{else}}
+                           {{date createdAt @config.custom.formatDateCustom}}
+                        {{/checkIf}}
+                     </time>
+                  {{/if}}
+               
+                  {{#if @config.page.displayAuthor}}
+                     <span class="post__author">
+                        {{#author}}
+                           <a href="{{url}}" class="feed__author">{{name}}</a>
+                        {{/author}}
+                     </span>
+                  {{/if}}
+               </div>
+            {{/checkIfAny}}   
+         </header>
+
+          {{#featuredImage}}
+            {{#if url}}               
+              <figure class="post__image post__cover">
+                 <img
+                    src="{{url}}"
+                    {{#if @config.site.responsiveImages}}                           
+                        {{responsiveImageAttributes 'featuredImage' srcset sizes}}
+                    {{/if}}
+                    {{ lazyload "eager" }}
+                    height="{{height}}"
+                    width="{{width}}"
+                    alt="{{alt}}">
+
+                 {{#checkIfAny caption credits}}
+                    <figcaption>
+                       {{caption}}
+                       {{credits}}
+                    </figcaption>                      
+                 {{/checkIfAny}}
+              </figure>               
+            {{/if}}
+         {{/featuredImage}}
+
+         <div class="post__entry">           
+            {{{text}}}            
+         </div>
+
+         {{#checkIfAny @config.page.displayLastUpdatedDate  @config.page.displayShareButtons}}
+            <footer class="wrapper post__footer">
+               {{#if @config.page.displayLastUpdatedDate}}
+                  {{#if modifiedAt}}
+                     <p class="post__last-updated">
+                        {{ translate 'post.lastUpdatedDate' }}
+                        {{#checkIf @config.custom.formatDate '!=' 'custom'}}
+                           {{date modifiedAt @config.custom.formatDate}}
+                        {{else}}
+                           {{date modifiedAt @config.custom.formatDateCustom}}
+                        {{/checkIf}}
+                     </p>
+                  {{/if}}
+               {{/if}}
+
+               {{#if @config.page.displayShareButtons}}
+                  {{#checkIfAll @plugins.socialSharing @plugins.socialSharing.state}}
+                     <div class="post__share">
+                        {{{@customSocialSharing}}}
+                     </div>
+                  {{else}}
+                     <div class="post__share">
+                        {{> share-buttons}}
+                     </div>
+                  {{/checkIfAll}}          
+               {{/if}}
+            </footer>
+         {{/checkIfAny}}
+      </article>
+
+      {{#if @config.page.displayChildPages}}
+         {{#if subpages}}
+            <div class="subpages">
+               <h2 class="h4 subpages__title">{{ translate 'page.childPages' }}</h2>
+               <ul class="subpages__list">
+                  {{> subpages-list}}
+               </ul>
+            </div>
+         {{/if}}
+      {{/if}}
+      
+      {{#if @config.page.displayComments}}
+         <div class="post__comments">
+            {{{@commentsCustomCode}}}
+         </div>
+      {{/if}}
+
+      {{#if @customHTML.afterPage}}
+         <div class="banner banner--after-post">
+            {{{@customHTML.afterPage}}}
+         </div>
+      {{/if}}
+
+   {{/page}}
+</main>
+{{> footer}}

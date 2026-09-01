@@ -1,0 +1,87 @@
+{{#if @pagination}}
+   <nav class="pagination {{@website.postsOrdering}}">
+      <div class="pagination__buttons">
+         {{#checkIf @website.postsOrdering '==' "desc"}}
+            {{#if @pagination.nextPage}}
+               {{#checkIf @website.postsOrdering '==' "desc"}}
+                  <a
+                     href="{{@pagination.nextPageUrl}}"
+                     class="btn previous"
+                     aria-label="{{ translate 'partials.pagination.prev' }}">
+                  <span class="btn__icon">&#8592;</span>
+                     <span class="btn__text">{{ translate 'partials.pagination.prev' }}</span>
+                  </a>
+               {{else}}
+                  <a
+                     href="{{@pagination.nextPageUrl}}"
+                     class="btn next"
+                     aria-label="{{ translate 'partials.pagination.next' }}">
+                     <span class="btn__text">{{ translate 'partials.pagination.next' }}</span>
+                     <span class="btn__icon">&#8594;</span>                
+                  </a>
+               {{/checkIf}}
+            {{/if}}
+            {{#if @pagination.previousPage}}
+               {{#checkIf @website.postsOrdering '==' "desc"}}
+                  <a
+                     href="{{@pagination.previousPageUrl}}"
+                     class="btn next"
+                     aria-label="{{ translate 'partials.pagination.next' }}">
+                     <span class="btn__text">{{ translate 'partials.pagination.next' }}</span>
+                     <span class="btn__icon">&#8594;</span>                 
+                  </a>
+               {{else}}
+                  <a
+                     href="{{@pagination.previousPageUrl}}"
+                     class="btn previous"
+                     aria-label="{{ translate 'partials.pagination.prev' }}">
+                     <span class="btn__icon">&#8592;</span>
+                     <span class="btn__text">{{ translate 'partials.pagination.prev' }}</span>
+                  </a>
+               {{/checkIf}}
+            {{/if}}
+         {{else}}
+
+            {{#if @pagination.previousPage}}
+               {{#checkIf @website.postsOrdering '==' "desc"}}
+                  <a
+                     href="{{@pagination.previousPageUrl}}"
+                     class="btn next"
+                     aria-label="{{ translate 'partials.pagination.next' }}">
+                     <span class="btn__text">{{ translate 'partials.pagination.next' }}</span>
+                     <span class="btn__icon">&#8594;</span>                
+                  </a>
+               {{else}}
+                  <a
+                     href="{{@pagination.previousPageUrl}}"
+                     class="btn previous"
+                     aria-label="{{ translate 'partials.pagination.prev' }}">
+                     <span class="btn__icon">&#8592;</span>
+                     <span class="btn__text">{{ translate 'partials.pagination.prev' }}</span>
+                  </a>
+               {{/checkIf}}
+            {{/if}}
+
+            {{#if @pagination.nextPage}}
+               {{#checkIf @website.postsOrdering '==' "desc"}}
+                  <a
+                     href="{{@pagination.nextPageUrl}}"
+                     class="btn previous"
+                     aria-label="{{ translate 'partials.pagination.prev' }}">
+                  <span class="btn__icon">&#8592;</span>
+                     <span class="btn__text">{{ translate 'partials.pagination.prev' }}</span>
+                  </a>
+               {{else}}
+                  <a
+                     href="{{@pagination.nextPageUrl}}"
+                     class="btn next"
+                     aria-label="{{ translate 'partials.pagination.next' }}">
+                     <span class="btn__text">{{ translate 'partials.pagination.next' }}</span>
+                     <span class="btn__icon">&#8594;</span>                 
+                  </a>
+               {{/checkIf}}
+            {{/if}}
+         {{/checkIf}}
+      </div>
+   </nav>
+{{/if}}

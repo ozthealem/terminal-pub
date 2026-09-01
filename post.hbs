@@ -1,0 +1,139 @@
+{{> head}}
+{{> navbar}}
+<main class="content">
+   {{#post}}
+      {{#if @customHTML.beforePost}}
+         <div class="banner banner--before-post">
+            {{{@customHTML.beforePost}}}
+         </div>
+      {{/if}}
+      <article class="post">      
+         <header>
+            <h1 class="post__title">{{title}}</h1>
+            {{#checkIfAny @config.post.displayDate @config.post.displayAuthor}}
+               <div class="post__meta">
+                  {{#if @config.post.displayDate}}
+                     <time datetime="{{date createdAt 'YYYY-MM-DDTHH:mm'}}" class="post__date">
+                        {{#checkIf @config.custom.formatDate '!=' 'custom'}}
+                           {{date createdAt @config.custom.formatDate}}
+                        {{else}}
+                           {{date createdAt @config.custom.formatDateCustom}}
+                        {{/checkIf}}
+                     </time>
+                  {{/if}}
+               
+                  {{#if @config.post.displayAuthor}}
+                     <span class="post__author">
+                        {{#author}}
+                           <a href="{{url}}" class="feed__author">{{name}}</a>
+                        {{/author}}
+                     </span>
+                  {{/if}}
+               </div>
+            {{/checkIfAny}}   
+
+            {{#if @config.post.displayTags}}
+               {{#if tags}}
+                  <div class="post__tags">
+                        {{#each tags}}
+                           <a href="{{url}}" class="invert">{{name}}</a>
+                        {{/each}} 
+                  </div>
+               {{/if}}
+            {{/if}}
+         </header>
+
+          {{#featuredImage}}
+            {{#if url}}               
+              <figure class="post__image post__cover">
+                 <img
+                    src="{{url}}"
+                    {{#if @config.site.responsiveImages}}                           
+                        {{responsiveImageAttributes 'featuredImage' srcset sizes}}
+                    {{/if}}
+                    {{ lazyload "eager" }}
+                    height="{{height}}"
+                    width="{{width}}"
+                    alt="{{alt}}">
+
+                 {{#checkIfAny caption credits}}
+                    <figcaption>
+                       {{caption}}
+                       {{credits}}
+                    </figcaption>                      
+                 {{/checkIfAny}}
+              </figure>               
+            {{/if}}
+         {{/featuredImage}}
+
+         <div class="post__entry">           
+            {{{text}}}            
+         </div>
+
+         {{#checkIfAny @config.post.displayLastUpdatedDate  @config.post.displayShareButtons}}
+            <footer class="wrapper post__footer">
+               {{#if @config.post.displayLastUpdatedDate}}
+                  {{#if modifiedAt}}
+                     <p class="post__last-updated">
+                        {{ translate 'post.lastUpdatedDate' }}
+                        {{#checkIf @config.custom.formatDate '!=' 'custom'}}
+                           {{date modifiedAt @config.custom.formatDate}}
+                        {{else}}
+                           {{date modifiedAt @config.custom.formatDateCustom}}
+                        {{/checkIf}}
+                     </p>
+                  {{/if}}
+               {{/if}}
+
+               {{#if @config.post.displayShareButtons}}
+                  {{#checkIfAll @plugins.socialSharing @plugins.socialSharing.state}}
+                     <div class="post__share">
+                        {{{@customSocialSharing}}}
+                     </div>
+                  {{else}}
+                     <div class="post__share">
+                        {{> share-buttons}}
+                     </div>
+                  {{/checkIfAll}}          
+               {{/if}}
+            </footer>
+         {{/checkIfAny}}
+
+         {{#if @config.post.displayPostNavigation}}
+            {{#checkIfAny ../previousPost ../nextPost}}
+               <nav class="pagination">
+                  <div class="pagination__title"><span>{{ translate 'partials.pagination.readOtherPosts' }}</span></div>
+                  <div class="pagination__buttons">
+                     {{#../previousPost}}
+                        <a href="{{url}}" class="btn previous" rel="prev" aria-label="{{ translate 'post.previousPost' }}:  {{title}} ">
+                           <span class="btn__icon">←</span>
+                           <span class="btn__text">{{title}}</span>
+                        </a>
+                     {{/../previousPost}}
+                     {{#../nextPost}}
+                        <a href="{{url}}" class="btn next" rel="next" aria-label="{{ translate 'post.nextPost' }}:  {{title}} ">
+                           <span class="btn__text">{{title}}</span>             
+                           <span class="btn__icon">→</span>
+                        </a>
+                     {{/../nextPost}}
+                  </div>
+               </nav>
+            {{/checkIfAny}}
+         {{/if}}
+      </article>
+      
+      {{#if @config.post.displayComments}}
+         <div class="post__comments">
+            {{{@commentsCustomCode}}}
+         </div>
+      {{/if}}
+
+      {{#if @customHTML.afterPost}}
+         <div class="banner banner--after-post">
+            {{{@customHTML.afterPost}}}
+         </div>
+      {{/if}}
+
+   {{/post}}
+</main>
+{{> footer}}

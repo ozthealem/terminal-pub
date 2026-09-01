@@ -1,0 +1,62 @@
+{{> head}}
+{{> navbar}}
+<main class="content page">
+   {{#page}}
+      {{#if @customHTML.beforePage}}
+         <div class="banner banner--before-post">
+            {{{@customHTML.beforePage}}}
+         </div>
+      {{/if}}
+      <div class="post">      
+         <div>
+            <h1 class="post__title">{{title}}</h1>
+         </div>
+
+          {{#featuredImage}}
+            {{#if url}}               
+              <figure class="post__image post__cover">
+                 <img
+                    src="{{url}}"
+                    {{#if @config.site.responsiveImages}}                           
+                        {{responsiveImageAttributes 'featuredImage' srcset sizes}}
+                    {{/if}}
+                    {{ lazyload "eager" }}
+                    height="{{height}}"
+                    width="{{width}}"
+                    alt="{{alt}}">
+
+                 {{#checkIfAny caption credits}}
+                    <figcaption>
+                       {{caption}}
+                       {{credits}}
+                    </figcaption>                      
+                 {{/checkIfAny}}
+              </figure>               
+            {{/if}}
+         {{/featuredImage}}
+
+         <div class="post__entry">           
+            {{{text}}}            
+         </div>
+      </div>
+
+      {{#if @config.page.displayChildPages}}
+         {{#if subpages}}
+            <div class="subpages">
+               <h2 class="h4 subpages__title">{{ translate 'page.childPages' }}</h2>
+               <ul class="subpages__list">
+                  {{> subpages-list}}
+               </ul>
+            </div>
+         {{/if}}
+      {{/if}}
+
+      {{#if @customHTML.afterPage}}
+         <div class="banner banner--after-post">
+            {{{@customHTML.afterPage}}}
+         </div>
+      {{/if}}
+
+   {{/page}}
+</main>
+{{> footer}}
