@@ -27,3 +27,7 @@ the additions are:
   the empty share-buttons row is hidden when no share buttons are enabled
 - Flatter dropdown submenu (no stacked shadow, 1px border) and a slimmer
   featured-image frame (5px)
+- Page alignment defaults to **center**
+- The scrollbar gutter is reserved (`overflow-y: scroll`), so switching between
+  short and long pages no longer shifts the layout sideways
+- Default hero and footer text rewritten for Terminal-Pub (no external links)
