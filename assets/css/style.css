@@ -1672,6 +1672,9 @@ input[type=radio] {
 }
 /* ===== Terminal-Pub additions ===== */
 
+/* Reserve the scrollbar gutter so short and long pages don't shift horizontally */
+html { scrollbar-gutter: stable; }
+
 /* Bilingual content tabs (see assets/js/lang.js) */
 .lang-tabs { display: flex; flex-wrap: wrap; gap: calc(var(--baseline) * 2); margin: calc(var(--baseline) * 5) 0; }
 .lang-btn {
