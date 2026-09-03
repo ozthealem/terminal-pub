@@ -1,5 +1,14 @@
 # Changelog
 
+## Unreleased
+
+### Changed
+- License corrected from MIT to **GPL-3.0-or-later**. Publii themes are
+  distributed under the GPL-3.0, and Terminal-Pub is a fork of the Publii
+  "Terminal" theme, so it inherits that license. The MIT-licensed upstream
+  portions from panr's `hugo-theme-terminal` keep their original terms. No
+  code change.
+
 ## 1.0.0
 
 First release. Fork of the Publii **Terminal** theme (TidyCustoms' port of

@@ -89,8 +89,11 @@ Alternatively, unzip the folder straight into Publii's `themes/` directory.
 
 ## Credits & license
 
-MIT — see [LICENSE](LICENSE).
+**GNU General Public License v3.0 or later** — see [LICENSE](LICENSE).
+Copyright (C) 2026 Özgür Alem (ozthealem).
 
-- [`hugo-theme-terminal`](https://github.com/panr/hugo-theme-terminal) — Radoslaw Koziel (panr), MIT
+Publii themes are distributed under the GPL-3.0, so this fork is too.
+
+- [`hugo-theme-terminal`](https://github.com/panr/hugo-theme-terminal) — Radoslaw Koziel (panr), MIT (MIT-licensed portions keep their original terms)
 - **Terminal** for Publii — TidyCustoms / the Publii Team
-- **Terminal-Pub** — ozthealem
+- **Terminal-Pub** — Özgür Alem (ozthealem)
