@@ -1,0 +1,25 @@
+Terminal-Pub — a Publii theme
+Copyright (C) 2026 Özgür Alem (ozthealem) <https://ozthealem.com>
+
+This program is free software: you can redistribute it and/or modify it
+under the terms of the GNU General Public License as published by the Free
+Software Foundation, either version 3 of the License, or (at your option)
+any later version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE. See the GNU General Public License (the LICENSE
+file) for more details.
+
+
+Upstream / attribution
+----------------------
+
+Terminal-Pub is a fork of the "Terminal" theme for Publii by TidyCustoms /
+the Publii Team, which is itself a port of "hugo-theme-terminal" by Radoslaw
+Koziel (panr) <https://github.com/panr/hugo-theme-terminal>.
+
+- hugo-theme-terminal is distributed under the MIT License. Those
+  MIT-licensed portions retain their original terms and copyright.
+- Publii themes are distributed under the GPL-3.0. The combined work
+  Terminal-Pub is therefore licensed as GPL-3.0-or-later.

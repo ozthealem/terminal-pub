@@ -89,8 +89,8 @@ Alternatively, unzip the folder straight into Publii's `themes/` directory.
 
 ## Credits & license
 
-**GNU General Public License v3.0 or later** — see [LICENSE](LICENSE).
-Copyright (C) 2026 Özgür Alem (ozthealem).
+**GNU General Public License v3.0 or later** — see [LICENSE](LICENSE) and
+[COPYRIGHT](COPYRIGHT). Copyright (C) 2026 Özgür Alem (ozthealem).
 
 Publii themes are distributed under the GPL-3.0, so this fork is too.
 
