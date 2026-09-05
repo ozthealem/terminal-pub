@@ -25,6 +25,8 @@
     border-radius: 3px;
     padding: 2px 8px;
     background: rgba(224, 138, 62, 0.08);
+    color: #333333;
+    font: inherit;
     font-size: 0.85em;
 }
 

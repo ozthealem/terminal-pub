@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.1.2
+
+### Fixed
+- `assets/css/editor.css`: the `.lang-btn` tab labels ("Türkçe"/"English")
+  were invisible in the Publii editor. `<button>` elements don't inherit
+  `color`/`font` from the page by default, so without an explicit
+  declaration they rendered in the browser's default button text style
+  against the new dashed-border background. Added `color` and
+  `font: inherit`.
+
 ## 1.1.1
 
 ### Added
