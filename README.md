@@ -5,8 +5,9 @@ A [Publii](https://getpublii.com) theme. Fork of the **Terminal** theme
 [`hugo-theme-terminal`](https://github.com/panr/hugo-theme-terminal)).
 
 Templates and layout are unchanged from Terminal. Terminal-Pub adds a real
-**colour system**, **bilingual content tabs**, ISO date formats and a
-self-updating copyright year.
+**colour system**, **bilingual content tabs**, ISO date formats, a
+self-updating copyright year, an optional RSS footer link, and a handful of
+**accessibility fixes** for keyboard navigation and screen readers.
 
 **Live demo:** https://terminal-demo.github.io/
 
@@ -22,7 +23,7 @@ Under **Site Settings → URLs**, turn on **Clean URLs** (`/post/` instead of
 | Option | Meaning |
 |---|---|
 | **Accent color** | Preset list (original Hugo Terminal palette) or `Custom` |
-| **Custom accent color** | HEX / RGB / HSL — shown when Accent = `Custom` |
+| **Custom accent color** | HEX / RGB / HSL, shown when Accent = `Custom` |
 | **Color scheme** | `Dark` (original look, background auto-derived from the accent), `Light` (white background, dark text), or `Custom` |
 | **Background color** / **Text color** | shown when Color scheme = `Custom` |
 
@@ -31,7 +32,7 @@ Preset accents (from Hugo Terminal): Golden `#eec35e` (default), Orange
 Purple `#C48AF0`. In **Dark** mode the background reproduces Hugo's
 `mix($accent, #1D1E28, 2%)`.
 
-No `!important` overrides are needed — the options feed `--accent`,
+No `!important` overrides are needed, the options feed `--accent`,
 `--background` and `--color`, which cascade to buttons, code blocks, borders,
 selection, the submenu, etc.
 
@@ -54,21 +55,41 @@ tabs. Add this markup to a post or page via an HTML block:
 - The visitor's choice is stored in `localStorage` and re-applied on any page
   that offers the same language; `<html lang>` is updated to match.
 
-## Date & year
+## Date, year & footer
 
 - Date format select adds `YYYY.MM.DD` (default), `YYYY/MM/DD`, `YYYY-MM-DD`.
-- The footer rewrites `© <year>` in the copyright text to the current year on
-  load, so it never goes stale.
+- The footer rewrites the copyright year to the current year on load, so it
+  never goes stale (works with `©`, `&copy;`, `(c)` or `(C)`, whichever you use).
+- **Theme settings → Layout → RSS Toggle**: **Show RSS link in the footer**
+  adds a small "RSS" link at the end of the footer copyright line, pointing
+  to `/feed.xml`.
+
+## Accessibility
+
+- Each `.lang-content` block is automatically tagged with `lang="<code>"`
+  (from its own `id`), so screen readers switch pronunciation correctly.
+  Doesn't override a `lang` you set yourself.
+- A visible `:focus-visible` outline (theme accent colour) is shown on
+  links, buttons and the language tabs when navigating by keyboard. Mouse
+  clicks stay outline-free, same as before.
+- Navbar submenus (dropdown menu items) are reachable by keyboard, Tab now
+  opens and steps through them instead of skipping past.
+
+## Theme settings
+
+Everything lives under two groups in Theme Settings: **Layout** (page, hero,
+tags, post list, navbar, share, footer, gallery, additional) and
+**Colors & Fonts**. Nothing was removed from Terminal, just regrouped.
 
 ## Files that differ from Terminal
 
 | File | Change |
 |---|---|
-| `config.json` | `Colors` option group; extra date-format options; `name` is `Terminal-Pub` |
-| `theme-variables.js` | derives `--accent` / `--background` / `--color` from the colour options (emitted as `H, S%, L%` triplets) |
-| `assets/js/lang.js` | new — bilingual tab logic |
-| `assets/css/style.css` | appended `.lang-tabs` / `.lang-btn` / `.lang-content` rules |
-| `partials/footer.hbs` | loads `lang.js`; current-year script |
+| `config.json` | `Colors` option group, RSS toggle, extra date-format options, `name` is `Terminal-Pub`, settings regrouped into Layout / Colors & Fonts |
+| `theme-variables.js` | derives `--accent`, `--background`, `--color` from the colour options (emitted as `H, S%, L%` triplets) |
+| `assets/js/lang.js` | new, bilingual tab logic plus automatic `lang` tagging |
+| `assets/css/main.css` | colour system support, bilingual tab styles, RSS footer link, accessibility fixes (compiled into `style.css` by Publii on render) |
+| `partials/footer.hbs` | loads `lang.js`, current-year script, RSS link |
 | `terminal-pub.lang.json` | renamed from `terminal.lang.json` |
 
 > Publii resolves the theme's asset folder as `themes/<config.json name,
@@ -89,11 +110,11 @@ Alternatively, unzip the folder straight into Publii's `themes/` directory.
 
 ## Credits & license
 
-**GNU General Public License v3.0 or later** — see [LICENSE](LICENSE) and
+**GNU General Public License v3.0 or later**, see [LICENSE](LICENSE) and
 [COPYRIGHT](COPYRIGHT). Copyright (C) 2026 Özgür Alem (ozthealem).
 
 Publii themes are distributed under the GPL-3.0, so this fork is too.
 
-- [`hugo-theme-terminal`](https://github.com/panr/hugo-theme-terminal) — Radoslaw Koziel (panr), MIT (MIT-licensed portions keep their original terms)
-- **Terminal** for Publii — TidyCustoms / the Publii Team
-- **Terminal-Pub** — Özgür Alem (ozthealem)
+- [`hugo-theme-terminal`](https://github.com/panr/hugo-theme-terminal), Radoslaw Koziel (panr), MIT (MIT-licensed portions keep their original terms)
+- **Terminal** for Publii, TidyCustoms / the Publii Team
+- **Terminal-Pub**, Özgür Alem (ozthealem)
