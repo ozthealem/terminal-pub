@@ -1,10 +1,11 @@
     <footer class="footer">
         <div class="footer__inner">
-            {{#if @config.custom.copyrightText}}
+            {{#checkIfAny @config.custom.copyrightText @config.custom.feedLink}}
                 <div class="footer__copyright">
                     {{{@config.custom.copyrightText}}}
+                    {{#if @config.custom.feedLink}}<span class="footer__feed"><a href="{{@website.url}}/feed.xml" type="application/rss+xml" title="RSS feed">RSS</a></span>{{/if}}
                 </div>
-            {{/if}}
+            {{/checkIfAny}}
             {{#if @config.custom.socialButtons}}
                 <div class="footer__social">
                     {{#if @config.custom.socialFacebook}}
@@ -87,7 +88,7 @@
 {{/if}}
 
 <script defer src="{{js "lang.js"}}"></script>
-<script>(function(){var c=document.querySelector('.footer__copyright');if(c){c.innerHTML=c.innerHTML.replace(/(©|&copy;)\s*\d{4}/,'© '+new Date().getFullYear());}})();</script>
+<script>(function(){var c=document.querySelector('.footer__copyright');if(c){c.innerHTML=c.innerHTML.replace(/(©|&copy;|\(c\)|\(C\))(\s*)\d{4}/,function(_,s,w){return s+w+new Date().getFullYear();});}})();</script>
 
 {{{@footerCustomCode}}}
 {{{ publiiFooter }}}

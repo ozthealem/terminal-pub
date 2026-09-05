@@ -11,12 +11,26 @@
  *   <div id="lang-en" class="lang-content">... English ...</div>
  *
  * The visitor's choice is remembered (localStorage) and re-applied on every
- * page that offers the same language.
+ * page that offers the same language. Each .lang-content block is also
+ * auto-tagged with lang="<code>" (from its id) for screen readers, unless
+ * you've already set one yourself.
  */
 (function () {
     'use strict';
 
     var KEY = 'publiiLang';
+
+    // Tag each block with its language (lang-tr -> lang="tr") so screen
+    // readers pick the right pronunciation/voice, per WCAG 3.1.2. Runs once;
+    // never overrides an attribute an author set on purpose.
+    function tagLanguages(contents) {
+        for (var i = 0; i < contents.length; i++) {
+            var match = /^lang-(.+)$/.exec(contents[i].id || '');
+            if (match && !contents[i].hasAttribute('lang')) {
+                contents[i].setAttribute('lang', match[1]);
+            }
+        }
+    }
 
     function apply(lang, remember) {
         var contents = document.querySelectorAll('.lang-content');
@@ -55,9 +69,12 @@
     }
 
     function init() {
-        if (!document.querySelector('.lang-content')) {
+        var contents = document.querySelectorAll('.lang-content');
+        if (!contents.length) {
             return;
         }
+
+        tagLanguages(contents);
 
         var saved = null;
         try {

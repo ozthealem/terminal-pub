@@ -1686,3 +1686,68 @@ html { overflow-y: scroll; scrollbar-gutter: stable; }
 /* Flatter dropdown submenu, slimmer featured-image frame */
 .navbar .navbar__submenu { box-shadow: none; border-width: 1px; }
 .post__cover { padding: calc(var(--baseline) * 1); border-width: 5px; }
+
+/* Footer RSS link (config: feedLink), inline after the copyright. The
+   separator dot lives on the wrapper span, so only "RSS" is the link. */
+.footer__copyright { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: center; gap: 0 0.4rem; }
+.footer__copyright > :first-child { margin-top: 0; }
+.footer__feed::before { content: "\00B7"; margin-right: 0.4rem; color: hsla(var(--color), var(--alpha, 0.5)); }
+.footer__feed a { color: hsla(var(--color), var(--alpha, 0.5)); }
+.footer__feed a:hover { color: hsla(var(--accent), var(--alpha, 1)); }
+
+/* Accessibility: Terminal's base rules hide the focus ring unconditionally
+   (a:focus, .btn/button/[type=button]/[type=submit], .invert:focus,
+   .footer a:focus all set outline:none with no replacement), so keyboard
+   users get no visible indicator. Restore one via :focus-visible, which
+   only fires for keyboard/programmatic focus - a mouse click stays as
+   outline-free as before. Comes after the base rules so it wins the
+   cascade at equal specificity. */
+a:focus-visible,
+.invert:focus-visible,
+.footer a:focus-visible,
+.btn:focus-visible, [type=button]:focus-visible, [type=submit]:focus-visible,
+button:focus-visible, a.btn:focus-visible {
+  outline: 1px solid hsla(var(--accent), 1);
+  outline-offset: 2px;
+}
+
+/* Accessibility: keyboard can't open navbar submenus. Terminal's dropdown
+   reveal rules key off ".has-submenu:focus", but "has-submenu" is a class
+   on the <li>, and an <li> is never itself focusable - only the <a> inside
+   it is. So that :focus never matches via keyboard, the submenu stays
+   visibility:hidden, and Tab skips straight over its (unfocusable-while-
+   hidden) links to the next top-level menu item. Mouse works fine because
+   :hover does apply to the <li>.
+   Fix: add the same reveal rules keyed off :focus-within instead, which
+   matches the <li> whenever focus is anywhere inside it - the parent link
+   or any submenu link - so the menu stays open while tabbing through it. */
+.navbar .has-submenu:focus-within > .navbar__submenu {
+  left: 0;
+  opacity: 1;
+  -webkit-transform: scale(1);
+          transform: scale(1);
+  visibility: visible;
+  margin-top: calc(var(--baseline) * 2);
+}
+.navbar .has-submenu:focus-within > .navbar__submenu:before {
+  content: "";
+  height: calc(var(--baseline) * 3);
+  left: 0;
+  position: absolute;
+  width: 100%;
+  top: calc(var(--baseline) * -3);
+}
+.navbar .has-submenu:focus-within > .navbar__submenu.is-right-submenu {
+  left: auto;
+  right: 0;
+  -webkit-transform-origin: right top;
+          transform-origin: right top;
+}
+.navbar .has-submenu .has-submenu:focus-within > .navbar__submenu {
+  top: 0;
+  margin-top: 0;
+}
+.navbar .has-submenu .has-submenu:focus-within > .navbar__submenu.is-right-submenu {
+  top: 0;
+  margin-top: 0;
+}

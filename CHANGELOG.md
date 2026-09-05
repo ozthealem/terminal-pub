@@ -1,6 +1,25 @@
 # Changelog
 
-## Unreleased
+## 1.1.0
+
+### Added
+- Footer RSS link: a **Show RSS link in the footer** toggle (`feedLink`,
+  under a new "RSS Toggle" separator in the Layout group) adds a small
+  "RSS" link at the end of the footer copyright line, pointing to
+  `/feed.xml`.
+- Accessibility: `.lang-content` blocks are auto-tagged with `lang="<code>"`
+  (from their `id`) so screen readers use the right pronunciation, and a
+  visible `:focus-visible` outline is restored on links/buttons/`.lang-btn`
+  for keyboard navigation (Terminal's base CSS removed it unconditionally).
+  Thanks to [@candidexmedia](https://github.com/candidexmedia) for flagging
+  both in the [announcement discussion](https://github.com/GetPublii/Publii/discussions/2687).
+- Accessibility: navbar submenus (dropdowns under "Works" etc.) were
+  unreachable by keyboard. The reveal rule keyed off `.has-submenu:focus`,
+  but `has-submenu` is a class on the `<li>`, which is never itself
+  focusable, so Tab always skipped straight past the (hidden) submenu to
+  the next top-level item. Added the same reveal rules keyed off
+  `:focus-within`, which matches the `<li>` while focus is anywhere inside
+  it, so the submenu now opens and stays open while tabbing through it.
 
 ### Changed
 - License corrected from MIT to **GPL-3.0-or-later**. Publii themes are
@@ -8,6 +27,13 @@
   "Terminal" theme, so it inherits that license. The MIT-licensed upstream
   portions from panr's `hugo-theme-terminal` keep their original terms. No
   code change.
+- Default copyright text now reads `© 2026 · Terminal-Pub the Fork` (proper
+  symbol and spacing).
+- Theme Settings reorganized from 9 groups down to **2**: "Layout"
+  (page, hero, tags, post list, navbar, share, footer, gallery,
+  additional) and "Colors & Fonts". No options were removed, just
+  regrouped under separators.
+- `config.json` author field: em dash replaced with a comma.
 
 ## 1.0.0
 
