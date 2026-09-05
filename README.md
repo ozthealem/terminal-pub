@@ -54,6 +54,37 @@ tabs. Add this markup to a post or page via an HTML block:
 - Mark one `.lang-content` (and optionally its button) `active` as the default.
 - The visitor's choice is stored in `localStorage` and re-applied on any page
   that offers the same language; `<html lang>` is updated to match.
+- **Editing:** `assets/css/editor.css` shows both `.lang-content` blocks with
+  a dashed border and a `lang: lang-tr` / `lang: lang-en` label right inside
+  the Publii editor, so you can tell them apart and check placement without
+  it affecting the published page.
+
+### Optional: a Templates snippet, so you don't retype the markup
+
+Publii's editor supports a Templates picker for reusable HTML, but it's a
+**per-site** setup (it's stored in each site's own `tinymce.override.json`,
+theme defaults can't ship it) and TinyMCE itself is dropping Templates in
+version 7 (going paywalled), so treat this as a recipe, not something the
+theme provides automatically.
+
+1. In your site's `input/<theme>/` folder, create `tinymce.override.json`:
+   ```json
+   {
+     "templates": [
+       {
+         "title": "Bilingual tabs (TR/EN)",
+         "description": "Insert the lang-tabs / lang-content markup",
+         "content": "<div class=\"lang-tabs\"><button class=\"lang-btn\" data-lang=\"tr\">Türkçe</button><button class=\"lang-btn\" data-lang=\"en\">English</button></div><div id=\"lang-tr\" class=\"lang-content active\">Türkçe metin</div><div id=\"lang-en\" class=\"lang-content\">English text</div>"
+       }
+     ]
+   }
+   ```
+2. In `config.json`, set `"extensions": { "postEditorConfigOverride": true }`.
+3. The snippet then shows up under the editor's Templates menu.
+
+Credit to [@candidexmedia](https://github.com/candidexmedia) for pointing at
+this mechanism, see their
+[TinyMCE customization notes](https://gist.github.com/candidexmedia/367711a80274b4c005fd5983df97d20c).
 
 ## Date, year & footer
 

@@ -1,3 +1,43 @@
-/* 
- * Add your own CSS code for the WYSIWYG editor 
+/*
+ * Terminal-Pub - editor-only styles
+ *
+ * Publii loads this file straight into the WYSIWYG (TinyMCE) editing iframe
+ * (assets/css/editor.css is a recognised path, no config.json wiring
+ * needed). It never reaches the published page, that's main.css's job.
+ *
+ * Purpose: the theme's main.css hides every .lang-content block except the
+ * active one (.lang-content { display: none } / .active { display: block }),
+ * which is exactly right on the live site but means an author editing a
+ * bilingual post can't see the other language's text at all. main.css isn't
+ * loaded in this iframe, so both blocks already show by default here; this
+ * file just draws their boundaries and labels each one, so you can tell
+ * .lang-tr from .lang-en and check the markup is placed correctly.
  */
+
+.lang-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+.lang-tabs .lang-btn {
+    border: 1px dashed #e08a3e;
+    border-radius: 3px;
+    padding: 2px 8px;
+    background: rgba(224, 138, 62, 0.08);
+    font-size: 0.85em;
+}
+
+.lang-content {
+    border: 1px dashed #e08a3e;
+    margin: 8px 0;
+    padding: 4px 10px 10px;
+}
+.lang-content::before {
+    content: "lang: " attr(id);
+    display: block;
+    font-family: monospace;
+    font-size: 0.75em;
+    color: #e08a3e;
+    margin: 4px 0 8px;
+}

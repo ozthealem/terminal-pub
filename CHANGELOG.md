@@ -1,5 +1,22 @@
 # Changelog
 
+## 1.1.1
+
+### Added
+- `assets/css/editor.css`: shown by Publii inside the WYSIWYG editor only
+  (never on the published page). Draws a dashed border and a `lang: <id>`
+  label around each `.lang-content` block, so you can tell `.lang-tr` from
+  `.lang-en` and check placement while writing, instead of only seeing the
+  one main.css shows active on the live site.
+- README: documented the editor.css behavior above, and added an optional
+  recipe for a Publii Templates snippet (`tinymce.override.json`) so the
+  bilingual markup doesn't have to be retyped by hand. Flagged as per-site
+  and not shippable as a theme default (TinyMCE is dropping Templates in
+  v7), so it's a recipe, not a built-in feature.
+
+Both promised to [@candidexmedia](https://github.com/candidexmedia) in the
+[announcement discussion](https://github.com/GetPublii/Publii/discussions/2687).
+
 ## 1.1.0
 
 ### Added
