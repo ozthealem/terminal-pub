@@ -56,6 +56,12 @@
 
                 button.setAttribute('role', 'tab');
 
+                // the label is written in its own language ("Türkçe",
+                // "English"), so screen readers should read it in that voice
+                if (code && !button.hasAttribute('lang')) {
+                    button.setAttribute('lang', code);
+                }
+
                 // ids must stay unique if a page repeats the tab bar
                 if (!button.id && code && !document.getElementById('lang-tab-' + code)) {
                     button.id = 'lang-tab-' + code;

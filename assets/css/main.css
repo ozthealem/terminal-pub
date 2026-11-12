@@ -1729,6 +1729,15 @@ button:focus-visible, a.btn:focus-visible {
   outline: 1px solid hsla(var(--accent), 1);
   outline-offset: 2px;
 }
+/* Form fields get the same keyboard ring as links and buttons (Terminal gave
+   them a text-coloured outline flush with the border). */
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  border-color: hsla(var(--accent), 1);
+  outline: 1px solid hsla(var(--accent), 1);
+  outline-offset: 2px;
+}
 
 /* Accessibility: "Skip to content" link (WCAG 2.4.1). It is the first Tab
    stop on every page and jumps past the logo and navbar straight to

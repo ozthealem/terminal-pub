@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.2.1
+
+### Fixed
+- Language tab buttons get `lang="<code>"` from their `data-lang` (unless one
+  is set), so screen readers read a label like "Türkçe" in its own language.
+  Suggested by @candidexmedia in the announcement discussion.
+- Form fields (`input`, `textarea`, `select`) get the same keyboard focus ring
+  as links and buttons: accent colour, 2px offset (`:focus-visible`).
+  Terminal gave them a text-coloured outline flush with the border.
+
 ## 1.2.0
 
 ### Added

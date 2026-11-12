@@ -169,6 +169,8 @@ count** for listings. Both are on by default.
   ("English, tab, selected, 2 of 2"), Tab reaches the selected tab, Left/Right
   switch tabs, Home/End jump to the first/last. No markup change needed.
   Tested with the NVDA screen reader in a Chromium browser.
+- Language tab buttons carry `lang` too, so their labels are read in their
+  own language. Form fields get the same accent focus ring as links.
 - A "Skip to content" link is the first Tab stop on every page and jumps past
   the navbar to the main content. It stays off-screen until focused.
 - Screen readers can read navbar submenus opened by keyboard. Terminal marked

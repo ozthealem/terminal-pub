@@ -1,6 +1,6 @@
 {
     "name": "Terminal-Pub",
-    "version": "1.2.0",
+    "version": "1.2.1",
     "author": "ozthealem <https://ozthealem.com>, fork of Terminal by TidyCustoms <https://tidycustoms.net/>",
     "menus": {
         "mainMenu": {
