@@ -39,5 +39,6 @@
         {{{@headCustomCode}}}
     </head>
     <body class="{{#is "index"}}home-template{{/is}}{{#is "index-pagination"}} pagination-template{{/is}}{{#is "tag"}}tag-template{{/is}}{{#is "tag-pagination"}} pagination-template{{/is}}{{#is "tags"}}tags-template{{/is}}{{#is "page"}}page-template{{/is}}{{#is "post"}}post-template{{/is}}{{#is "author"}}author-template{{/is}}{{#is "author-pagination"}} pagination-template{{/is}}{{#is "404"}}error-template{{/is}}{{#is "search"}}search-template{{/is}}">
+       <a class="skip-link" href="#main">{{ translate 'partials.skipLink.label' }}</a>
        <div class="container{{#checkIf @config.custom.pageAligment '==' "center"}} container--center{{/checkIf}}">
           {{{@bodyCustomCode}}}

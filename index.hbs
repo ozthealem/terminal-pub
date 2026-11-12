@@ -1,6 +1,6 @@
 {{> head}}
 {{> navbar}}
-<main class="content">
+<main id="main" tabindex="-1" class="content">
    {{#if @renderer.isFirstPage}}
       {{#if @config.custom.hero}}
          <div class="hero framed">
@@ -8,20 +8,22 @@
          </div>
       {{/if}}
    {{/if}}
-   <div class="posts">
+   <div class="posts{{listingModeClass}}{{#unless @config.custom.listingFrame}} posts--plain-thumbs{{/unless}}">
       {{#each posts}}
+         {{#ifListingMode "full"}}
          <article class="post">
             <header>
                {{#checkIf @index '==' 0}}
-                  {{#checkIf @config.custom.hero '==' false}}
-                     <h1 class="post__title"><a href="{{url}}">{{title}}</a></h1>
-                  {{else}}
+                  {{!-- the hero holds the page's h1 on the first page only; later pages give it to the first post --}}
+                  {{#checkIfAll @config.custom.hero @renderer.isFirstPage}}
                      <h2 class="h1 post__title"><a href="{{url}}">{{title}}</a></h2>
-                  {{/checkIf}}
+                  {{else}}
+                     <h1 class="post__title"><a href="{{url}}">{{title}}</a></h1>
+                  {{/checkIfAll}}
                {{else}}
                   <h2 class="h1 post__title"><a href="{{url}}">{{title}}</a></h2>
                {{/checkIf}}
-               {{#checkIfAny @config.custom.listingDate @config.custom.listingAuthor}}
+               {{#checkIfAny @config.custom.listingDate @config.custom.listingAuthor @config.custom.listingWordCount}}
                   <div class="post__meta">     
                      {{#if @config.custom.listingDate}}
                         <time datetime="{{date createdAt 'YYYY-MM-DDTHH:mm'}}" class="post__date">
@@ -32,6 +34,7 @@
                            {{/checkIf}}
                         </time>
                      {{/if}}
+                     {{#if @config.custom.listingWordCount}}{{#with (wordCount text) as |words|}}{{#if words}}<span class="post__words">{{words}} {{translate 'post.words' words}}</span>{{/if}}{{/with}}{{/if}}
                      {{#if @config.custom.listingAuthor}}
                         {{#author}}
                            <a href="{{url}}" class="post__author">{{name}}</a>
@@ -58,7 +61,7 @@
             {{#if @config.custom.listingFeaturedImage}}
                {{#featuredImage}}
                   {{#if url}}
-                     <figure class="post__image post__cover">
+                     <figure class="post__image post__cover{{#if @config.custom.featuredImagePlain}} post__cover--plain{{else}}{{#unless @config.custom.listingFrame}} post__cover--plain{{/unless}}{{/if}}{{#checkIf width '<' 240}} post__cover--small{{/checkIf}}">
                         <img
                            src="{{url}}"
                            {{#if @config.site.responsiveImages}}
@@ -90,6 +93,9 @@
                {{/if}}
             </div>
          </article>
+         {{else}}
+         {{#checkIf @index '==' 0}}{{#checkIfAll @config.custom.hero @renderer.isFirstPage}}{{> listing-item}}{{else}}{{> listing-item h1=true}}{{/checkIfAll}}{{else}}{{> listing-item}}{{/checkIf}}
+         {{/ifListingMode}}
       {{/each}}
       {{> pagination}}
    </div>

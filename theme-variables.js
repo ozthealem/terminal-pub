@@ -880,14 +880,75 @@ if (params.colorScheme === 'light') {
   colorHSL = '0, 0%, 100%';
 }
 
-  output += `    
+// --- Readable small text (option readableSmallText) -------------------------
+// WCAG relative luminance and contrast ratio
+function luminance(rgb) {
+  const lin = v => { v /= 255; return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4); };
+  return 0.2126 * lin(rgb[0]) + 0.7152 * lin(rgb[1]) + 0.0722 * lin(rgb[2]);
+}
+
+function contrast(a, b) {
+  const la = luminance(a), lb = luminance(b);
+  return (Math.max(la, lb) + 0.05) / (Math.min(la, lb) + 0.05);
+}
+
+const READABLE = 4.5; // WCAG AA, normal-size text
+let readableCss = '';
+
+if (params.readableSmallText) {
+  const bgRgb = colorToRgb(backgroundHSL);
+  const textRgb = colorToRgb(colorHSL);
+  const accentParts = accentHSL.match(/[\d.]+/g).map(Number);
+
+  // the accent's hue and saturation, lightness moved away from the background
+  // one step at a time until it reads; on a dark background it gets lighter
+  let readableAccent = accentHSL;
+  const towardsDark = luminance(bgRgb) > 0.18;
+  for (let l = accentParts[2]; l >= 0 && l <= 100; l += towardsDark ? -1 : 1) {
+    if (contrast(hslToRgb(accentParts[0], accentParts[1] / 100, l / 100), bgRgb) >= READABLE) {
+      readableAccent = `${accentParts[0]}, ${accentParts[1]}%, ${l}%`;
+      break;
+    }
+  }
+
+  // the lowest text opacity that still reads (the theme's faded value is 0.5)
+  let readableAlpha = 1;
+  for (let a = 0.5; a <= 1; a += 0.05) {
+    if (contrast(mixRgb(textRgb, bgRgb, a), bgRgb) >= READABLE) {
+      readableAlpha = Math.round(a * 100) / 100;
+      break;
+    }
+  }
+
+  // this block comes before main.css in style.css, so "html" lifts each
+  // selector one step above the main.css rule it replaces
+  readableCss = `
+    html .post__meta,
+    html .post__meta a,
+    html .post__meta > *:not(:first-child)::before,
+    html a.read-more {
+      color: hsl(${readableAccent});
+    }
+    html .post__tags a:not(:hover),
+    html .footer,
+    html .footer a:not(:hover),
+    html .footer__feed::before,
+    html .footer__feed a:not(:hover) {
+      color: hsla(var(--color), ${readableAlpha});
+    }
+  `;
+}
+
+  output += `
     :root {
       --page-margin:        20px;
       --page-width:         ${params.pageWidth}; 
       --navbar-height:      34px; 
       --border-radius:      0;
       --baseline:           0.25rem;
-      --gallery-gap:        ${params.galleryItemGap}; 
+      --gallery-gap:        ${params.galleryItemGap};
+      --cover-radius:       ${parseFloat(params.featuredImageRadius) || 0}px;
+      --list-size:          ${parseFloat(params.listingListSize) || 1.05}rem;
       --transition:         all 0.24s ease-out;
       --body-font:          ${fontBodyFamily};
       --heading-font:       ${fontHeadingsFamily};
@@ -917,6 +978,7 @@ if (params.colorScheme === 'light') {
         --page-margin: 40px;
       }
     }
+    ${readableCss}
  `;
 
   return output;

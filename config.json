@@ -1,6 +1,6 @@
 {
     "name": "Terminal-Pub",
-    "version": "1.1.2",
+    "version": "1.2.0",
     "author": "ozthealem <https://ozthealem.com>, fork of Terminal by TidyCustoms <https://tidycustoms.net/>",
     "menus": {
         "mainMenu": {
@@ -78,6 +78,12 @@
             "upload": true
         }
     ],
+    "tagTemplates": {
+        "full": "Layout: Full",
+        "half": "Layout: Half",
+        "compact": "Layout: Compact",
+        "list": "Layout: List"
+    },
     "customConfig": [
         {
             "name": "pageAligment",
@@ -103,6 +109,97 @@
             "note": "For full-screen width, set to 100%",
             "value": "864px",
             "type": "text"
+        },
+        {
+            "name": "listingMode",
+            "label": "Layout mode",
+            "group": "Layout",
+            "note": "",
+            "value": "full",
+            "type": "radio",
+            "options": [
+                {
+                    "label": "Full",
+                    "value": "full"
+                },
+                {
+                    "label": "Half",
+                    "value": "half"
+                },
+                {
+                    "label": "Compact",
+                    "value": "compact"
+                },
+                {
+                    "label": "List",
+                    "value": "list"
+                }
+            ]
+        },
+        {
+            "name": "listingFrame",
+            "group": "Layout",
+            "label": "Frame around images",
+            "value": true,
+            "type": "checkbox",
+            "dependencies": [
+                {
+                    "field": "listingMode",
+                    "value": "full,half"
+                }
+            ]
+        },
+        {
+            "name": "listingListSize",
+            "group": "Layout",
+            "label": "List: text size",
+            "note": "In REM unit",
+            "value": "1.05",
+            "type": "range",
+            "min": 0.9,
+            "max": 1.5,
+            "step": 0.05,
+            "dependencies": [
+                {
+                    "field": "listingMode",
+                    "value": "list"
+                }
+            ]
+        },
+        {
+            "name": "separator",
+            "type": "separator",
+            "label": "Featured image",
+            "group": "Layout",
+            "note": "",
+            "size": "small"
+        },
+        {
+            "name": "featuredImageRadius",
+            "label": "Corner radius",
+            "group": "Layout",
+            "note": "Rounds the corners of every post image, in PX: the featured image frame and the image inside it, and images in posts, excerpts and galleries. 0 gives square corners.",
+            "value": "10",
+            "type": "range",
+            "min": 0,
+            "max": 30,
+            "step": 1
+        },
+        {
+            "name": "featuredImagePlain",
+            "label": "Posts: show featured image without frame",
+            "group": "Layout",
+            "note": "Removes the accent-coloured frame around featured images on post pages and in post lists, so the image shows edge to edge.",
+            "value": false,
+            "type": "checkbox"
+        },
+        {
+            "name": "featuredImagePlainPages",
+            "label": "Pages: show featured image without frame",
+            "group": "Layout",
+            "note": "The same for featured images on pages.",
+            "value": false,
+            "type": "checkbox"
         },
         {
             "name": "separator",
@@ -179,6 +276,13 @@
             "name": "listingDate",
             "group": "Layout",
             "label": "Show date",
+            "value": true,
+            "type": "checkbox"
+        },
+        {
+            "name": "listingWordCount",
+            "group": "Layout",
+            "label": "Show word count",
             "value": true,
             "type": "checkbox"
         },
@@ -665,12 +769,22 @@
             "name": "accentColor",
             "label": "Accent color",
             "group": "Colors & Fonts",
-            "note": "Predefined accents use the original Hugo Terminal palette. Choose 'Custom' to set your own.",
-            "value": "#eec35e",
+            "note": "Green is Terminal-Pub's default and Matrix its bright extra; the others are the original Hugo Terminal palette (its green is now Olive). Choose 'Custom' to set your own.<br><span style=\"white-space:nowrap\"><span style=\"display:inline-block;width:.9em;height:.9em;border-radius:2px;vertical-align:-.1em;background:#45AE13\"></span> Green</span> <span style=\"white-space:nowrap\"><span style=\"display:inline-block;width:.9em;height:.9em;border-radius:2px;vertical-align:-.1em;background:#00FF41\"></span> Matrix</span> <span style=\"white-space:nowrap\"><span style=\"display:inline-block;width:.9em;height:.9em;border-radius:2px;vertical-align:-.1em;background:#eec35e\"></span> Golden</span> <span style=\"white-space:nowrap\"><span style=\"display:inline-block;width:.9em;height:.9em;border-radius:2px;vertical-align:-.1em;background:#FFA86A\"></span> Orange</span> <span style=\"white-space:nowrap\"><span style=\"display:inline-block;width:.9em;height:.9em;border-radius:2px;vertical-align:-.1em;background:#23B0FF\"></span> Blue</span> <span style=\"white-space:nowrap\"><span style=\"display:inline-block;width:.9em;height:.9em;border-radius:2px;vertical-align:-.1em;background:#78E2A0\"></span> Olive</span> <span style=\"white-space:nowrap\"><span style=\"display:inline-block;width:.9em;height:.9em;border-radius:2px;vertical-align:-.1em;background:#EE72F1\"></span> Pink</span> <span style=\"white-space:nowrap\"><span style=\"display:inline-block;width:.9em;height:.9em;border-radius:2px;vertical-align:-.1em;background:#FF6266\"></span> Red</span> <span style=\"white-space:nowrap\"><span style=\"display:inline-block;width:.9em;height:.9em;border-radius:2px;vertical-align:-.1em;background:#C48AF0\"></span> Purple</span>",
+            "value": "#45AE13",
             "type": "select",
             "options": [
                 {
-                    "label": "Golden (Terminal default)",
+                    "label": "Green (Terminal-Pub default)",
+                    "value": "#45AE13",
+                    "group": "Predefined"
+                },
+                {
+                    "label": "Matrix",
+                    "value": "#00FF41",
+                    "group": "Predefined"
+                },
+                {
+                    "label": "Golden",
                     "value": "#eec35e",
                     "group": "Predefined"
                 },
@@ -685,7 +799,7 @@
                     "group": "Predefined"
                 },
                 {
-                    "label": "Green",
+                    "label": "Olive",
                     "value": "#78E2A0",
                     "group": "Predefined"
                 },
@@ -716,7 +830,7 @@
             "label": "Custom accent color",
             "group": "Colors & Fonts",
             "note": "Accepts HEX, RGB or HSL. Alpha values are ignored as they are determined by the theme styling.",
-            "value": "#eec35e",
+            "value": "#45AE13",
             "type": "colorpicker",
             "dependencies": [
                 {
@@ -774,6 +888,14 @@
                     "value": "custom"
                 }
             ]
+        },
+        {
+            "name": "readableSmallText",
+            "label": "Readable small text",
+            "group": "Colors & Fonts",
+            "note": "Off keeps the faded look, which pushes minor details back. On, the date and word count line, tags, the footer and 'Read more' get just enough contrast to pass WCAG AA (4.5:1), worked out from your accent and background. Headings stay as they are.",
+            "value": false,
+            "type": "checkbox"
         },
         {
             "name": "separator",
@@ -2156,6 +2278,22 @@
         {
             "name": "displayAuthor",
             "label": "Display author",
+            "value": 1,
+            "type": "select",
+            "options": [
+                {
+                    "label": "Enabled",
+                    "value": 1
+                },
+                {
+                    "label": "Disabled",
+                    "value": 0
+                }
+            ]
+        },
+        {
+            "name": "displayWordCount",
+            "label": "Display word count",
             "value": 1,
             "type": "select",
             "options": [

@@ -1,6 +1,6 @@
 {{> head}}
 {{> navbar}}
-<main class="content">
+<main id="main" tabindex="-1" class="content">
    {{#post}}
       {{#if @customHTML.beforePost}}
          <div class="banner banner--before-post">
@@ -10,7 +10,7 @@
       <article class="post">      
          <header>
             <h1 class="post__title">{{title}}</h1>
-            {{#checkIfAny @config.post.displayDate @config.post.displayAuthor}}
+            {{#checkIfAny @config.post.displayDate @config.post.displayAuthor @config.post.displayWordCount}}
                <div class="post__meta">
                   {{#if @config.post.displayDate}}
                      <time datetime="{{date createdAt 'YYYY-MM-DDTHH:mm'}}" class="post__date">
@@ -21,6 +21,7 @@
                         {{/checkIf}}
                      </time>
                   {{/if}}
+                  {{#if @config.post.displayWordCount}}{{#with (wordCount text) as |words|}}{{#if words}}<span class="post__words">{{words}} {{translate 'post.words' words}}</span>{{/if}}{{/with}}{{/if}}
                
                   {{#if @config.post.displayAuthor}}
                      <span class="post__author">
@@ -45,7 +46,7 @@
 
           {{#featuredImage}}
             {{#if url}}               
-              <figure class="post__image post__cover">
+              <figure class="post__image post__cover{{#if @config.custom.featuredImagePlain}} post__cover--plain{{/if}}">
                  <img
                     src="{{url}}"
                     {{#if @config.site.responsiveImages}}                           
@@ -105,13 +106,13 @@
                   <div class="pagination__title"><span>{{ translate 'partials.pagination.readOtherPosts' }}</span></div>
                   <div class="pagination__buttons">
                      {{#../previousPost}}
-                        <a href="{{url}}" class="btn previous" rel="prev" aria-label="{{ translate 'post.previousPost' }}:  {{title}} ">
+                        <a href="{{url}}" class="btn previous" rel="prev" aria-label="{{ translate 'post.previousPost' }}: {{title}}">
                            <span class="btn__icon">←</span>
                            <span class="btn__text">{{title}}</span>
                         </a>
                      {{/../previousPost}}
                      {{#../nextPost}}
-                        <a href="{{url}}" class="btn next" rel="next" aria-label="{{ translate 'post.nextPost' }}:  {{title}} ">
+                        <a href="{{url}}" class="btn next" rel="next" aria-label="{{ translate 'post.nextPost' }}: {{title}}">
                            <span class="btn__text">{{title}}</span>             
                            <span class="btn__icon">→</span>
                         </a>
@@ -124,7 +125,14 @@
       
       {{#if @config.post.displayComments}}
          <div class="post__comments">
-            {{{@commentsCustomCode}}}
+            {{!-- comment services check the page's address, so they refuse Publii's
+                  preview (127.0.0.1) and some, like Comentario, then scroll their
+                  error box into view; the preview shows a note instead --}}
+            {{#if @renderer.previewMode}}
+               <p class="post__comments-preview">{{ translate 'post.commentsPreview' }}</p>
+            {{else}}
+               {{{@commentsCustomCode}}}
+            {{/if}}
          </div>
       {{/if}}
 

@@ -1,0 +1,1 @@
+<time datetime="{{date createdAt 'YYYY-MM-DDTHH:mm'}}" class="post__date">{{#checkIf @config.custom.formatDate '!=' 'custom'}}{{date createdAt @config.custom.formatDate}}{{else}}{{date createdAt @config.custom.formatDateCustom}}{{/checkIf}}</time>

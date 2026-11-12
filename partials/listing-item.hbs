@@ -1,0 +1,60 @@
+{{!--
+   One post in the Half, Compact or List post list layout (Layout > Post list >
+   Layout mode). Full keeps its own markup in index.hbs, tag.hbs and author.hbs.
+   h1=true makes the title the page's h1 (first post on the home page when
+   there is no hero, see index.hbs).
+--}}
+<article class="post">
+   {{#ifListingMode "half"}}
+      {{#if @config.custom.listingFeaturedImage}}
+         {{#if featuredImage.url}}
+            <a href="{{url}}" class="post__thumb{{#checkIf featuredImage.width '<' 240}} post__thumb--small{{/checkIf}}" tabindex="-1" aria-hidden="true">
+               <img src="{{featuredImage.url}}" {{#if @config.site.responsiveImages}}{{responsiveImageAttributes 'featuredImage' featuredImage.srcset featuredImage.sizes}}{{/if}} {{ lazyload "lazy" }} width="{{featuredImage.width}}" height="{{featuredImage.height}}" alt="{{featuredImage.alt}}">
+            </a>
+         {{else}}
+            {{#with (firstImage text)}}
+               <a href="{{../url}}" class="post__thumb{{#checkIf width '<' 240}} post__thumb--small{{/checkIf}}" tabindex="-1" aria-hidden="true">
+                  <img src="{{url}}" loading="lazy" {{#if width}}width="{{width}}" height="{{height}}"{{/if}} alt="{{alt}}">
+               </a>
+            {{/with}}
+         {{/if}}
+      {{/if}}
+      <div class="post__half">
+         <header>
+            {{#if h1}}<h1 class="post__title"><a href="{{url}}">{{title}}</a></h1>{{else}}<h2 class="post__title"><a href="{{url}}">{{title}}</a></h2>{{/if}}
+            {{#checkIfAny @config.custom.listingDate @config.custom.listingWordCount @config.custom.listingAuthor}}
+               <div class="post__meta">
+                  {{#if @config.custom.listingDate}}{{> listing-date}}{{/if}}
+                  {{#if @config.custom.listingWordCount}}{{#with (wordCount text) as |words|}}{{#if words}}<span class="post__words">{{words}} {{translate 'post.words' words}}</span>{{/if}}{{/with}}{{/if}}
+                  {{#if @config.custom.listingAuthor}}{{#author}}<a href="{{url}}" class="post__author">{{name}}</a>{{/author}}{{/if}}
+               </div>
+            {{/checkIfAny}}
+            {{> listing-tags}}
+         </header>
+         <p class="post__summary">{{{plainText excerpt}}}</p>
+      </div>
+   {{/ifListingMode}}
+
+   {{#ifListingMode "compact"}}
+      <div class="post__line">
+         {{#if @config.custom.listingDate}}{{> listing-date}}{{/if}}
+         {{#if @config.custom.listingWordCount}}{{#with (wordCount text) as |words|}}{{#if words}}<span class="post__words">{{words}} {{translate 'post.words' words}}</span>{{/if}}{{/with}}{{/if}}
+         {{#if @config.custom.listingAuthor}}{{#author}}<a href="{{url}}" class="post__author">{{name}}</a>{{/author}}{{/if}}
+         {{> listing-tags}}
+      </div>
+      {{#if h1}}<h1 class="post__title"><a href="{{url}}">{{title}}</a></h1>{{else}}<h2 class="post__title"><a href="{{url}}">{{title}}</a></h2>{{/if}}
+      <p class="post__summary">{{{plainText excerpt}}}</p>
+   {{/ifListingMode}}
+
+   {{#ifListingMode "list"}}
+      <div class="post__side">{{#if @config.custom.listingDate}}{{> listing-date}}{{/if}}</div>
+      <div class="post__main">
+         {{#if h1}}<h1 class="post__title"><a href="{{url}}">{{title}}</a></h1>{{else}}<h2 class="post__title"><a href="{{url}}">{{title}}</a></h2>{{/if}}
+         <div class="post__line">
+            {{> listing-tags}}
+            {{#if @config.custom.listingWordCount}}{{#with (wordCount text) as |words|}}{{#if words}}<span class="post__words">{{words}} {{translate 'post.words' words}}</span>{{/if}}{{/with}}{{/if}}
+            {{#if @config.custom.listingAuthor}}{{#author}}<a href="{{url}}" class="post__author">{{name}}</a>{{/author}}{{/if}}
+         </div>
+      </div>
+   {{/ifListingMode}}
+</article>

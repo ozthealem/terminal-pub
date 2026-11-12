@@ -4,6 +4,10 @@
         "menu": {
             "label": "Menu"
         },
+
+        "skipLink": {
+            "label": "Skip to content"
+        },
         
         "pagination": {
             "readOtherPosts": "Read other posts",
@@ -26,7 +30,14 @@
     "post": {
         "readMore": "Read more",
         "lastUpdatedDate": "This article was updated on",
-        "comments": "Comments"
+        "comments": "Comments",
+        "commentsPreview": "Comments load on the published site, not in the Publii preview.",
+        "previousPost": "Previous post",
+        "nextPost": "Next post",
+        "words": {
+            "1": "word",
+            "default": "words"
+        }
     },
 
     "page": {

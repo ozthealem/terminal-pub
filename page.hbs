@@ -1,6 +1,6 @@
 {{> head}}
 {{> navbar}}
-<main class="content page">
+<main id="main" tabindex="-1" class="content page">
    {{#page}}
       {{#if @customHTML.beforePage}}
          <div class="banner banner--before-post">
@@ -35,7 +35,7 @@
 
           {{#featuredImage}}
             {{#if url}}               
-              <figure class="post__image post__cover">
+              <figure class="post__image post__cover{{#if @config.custom.featuredImagePlainPages}} post__cover--plain{{/if}}">
                  <img
                     src="{{url}}"
                     {{#if @config.site.responsiveImages}}                           

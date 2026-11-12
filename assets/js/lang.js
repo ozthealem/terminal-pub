@@ -14,6 +14,11 @@
  * page that offers the same language. Each .lang-content block is also
  * auto-tagged with lang="<code>" (from its id) for screen readers, unless
  * you've already set one yourself.
+ *
+ * The tabs follow the WAI-ARIA Tabs pattern, added at load time so the
+ * markup above needs no extra attributes: role="tablist"/"tab"/"tabpanel",
+ * aria-selected, aria-controls, and keyboard support (Tab reaches the
+ * selected tab, Left/Right switch tabs, Home/End jump to first/last).
  */
 (function () {
     'use strict';
@@ -28,6 +33,43 @@
             var match = /^lang-(.+)$/.exec(contents[i].id || '');
             if (match && !contents[i].hasAttribute('lang')) {
                 contents[i].setAttribute('lang', match[1]);
+            }
+        }
+    }
+
+    // WAI-ARIA Tabs pattern (https://www.w3.org/WAI/ARIA/apg/patterns/tabs/).
+    // Without it a screen reader announces the tabs as plain buttons, can't
+    // tell which one is selected, and a switch changes the content silently.
+    // Never overrides a role, id or label the author set on purpose.
+    function setupTabs() {
+        var lists = document.querySelectorAll('.lang-tabs');
+        for (var i = 0; i < lists.length; i++) {
+            if (!lists[i].hasAttribute('role')) {
+                lists[i].setAttribute('role', 'tablist');
+            }
+
+            var buttons = lists[i].querySelectorAll('.lang-btn');
+            for (var j = 0; j < buttons.length; j++) {
+                var button = buttons[j];
+                var code = button.getAttribute('data-lang');
+                var panel = code ? document.getElementById('lang-' + code) : null;
+
+                button.setAttribute('role', 'tab');
+
+                // ids must stay unique if a page repeats the tab bar
+                if (!button.id && code && !document.getElementById('lang-tab-' + code)) {
+                    button.id = 'lang-tab-' + code;
+                }
+
+                if (panel) {
+                    button.setAttribute('aria-controls', panel.id);
+                    if (!panel.hasAttribute('role')) {
+                        panel.setAttribute('role', 'tabpanel');
+                    }
+                    if (button.id && !panel.hasAttribute('aria-labelledby')) {
+                        panel.setAttribute('aria-labelledby', button.id);
+                    }
+                }
             }
         }
     }
@@ -54,7 +96,11 @@
 
         var buttons = document.querySelectorAll('.lang-btn');
         for (var j = 0; j < buttons.length; j++) {
-            buttons[j].classList.toggle('active', buttons[j].getAttribute('data-lang') === lang);
+            var selected = buttons[j].getAttribute('data-lang') === lang;
+            buttons[j].classList.toggle('active', selected);
+            buttons[j].setAttribute('aria-selected', selected ? 'true' : 'false');
+            // roving tabindex: only the selected tab is a Tab stop
+            buttons[j].setAttribute('tabindex', selected ? '0' : '-1');
         }
 
         document.documentElement.setAttribute('lang', lang);
@@ -75,6 +121,7 @@
         }
 
         tagLanguages(contents);
+        setupTabs();
 
         var saved = null;
         try {
@@ -97,6 +144,32 @@
             var lang = button.getAttribute('data-lang');
             if (lang) {
                 apply(lang, true);
+            }
+        });
+
+        document.addEventListener('keydown', function (e) {
+            var button = e.target && e.target.closest ? e.target.closest('.lang-btn') : null;
+            var list = button ? button.closest('.lang-tabs') : null;
+            if (!list) {
+                return;
+            }
+
+            var tabs = Array.prototype.slice.call(list.querySelectorAll('.lang-btn'));
+            var index = tabs.indexOf(button);
+            var next;
+
+            switch (e.key) {
+                case 'ArrowRight': next = tabs[(index + 1) % tabs.length]; break;
+                case 'ArrowLeft': next = tabs[(index - 1 + tabs.length) % tabs.length]; break;
+                case 'Home': next = tabs[0]; break;
+                case 'End': next = tabs[tabs.length - 1]; break;
+                default: return;
+            }
+
+            e.preventDefault();
+            var lang = next.getAttribute('data-lang');
+            if (lang && apply(lang, true)) {
+                next.focus();
             }
         });
     }

@@ -142,17 +142,30 @@
                 submenuParents[i].addEventListener('mouseleave', function () {
                     var submenu = this.querySelector(config.submenuSelector);
                     submenu.removeAttribute('style');
-                    submenu.setAttribute('aria-hidden', true);
                 });
             }
         }
     }
 
     /**
+     * The mobile menu copy is a <nav> landmark named like the menu button, so
+     * screen readers list it with the other page regions (axe "region" rule)
+     */
+    function createMobileMenuLandmark () {
+        var menuWrapper = document.createElement('nav');
+        var button = document.querySelector(config.buttonSelector);
+        var label = button ? button.getAttribute('aria-label') : null;
+
+        menuWrapper.setAttribute('aria-label', label || 'Menu');
+
+        return menuWrapper;
+    }
+
+    /**
      * Function used to init mobile menu - overlay mode
      */
     function initMobileMenuOverlay () {
-        var menuWrapper = document.createElement('div');
+        var menuWrapper = createMobileMenuLandmark();
         menuWrapper.classList.add(config.mobileMenuOverlayClass);
         menuWrapper.classList.add(config.hiddenElementClass);
         var menuContentHTML = document.querySelector(config.menuSelector).outerHTML;
@@ -197,7 +210,7 @@
      */
     function initMobileMenuSidebar () {
         // Create menu structure
-        var menuWrapper = document.createElement('div');
+        var menuWrapper = createMobileMenuLandmark();
         menuWrapper.classList.add(config.mobileMenuSidebarClass);
         menuWrapper.classList.add(config.hiddenElementClass);
         var menuContentHTML = '';

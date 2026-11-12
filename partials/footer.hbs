@@ -1,11 +1,16 @@
     <footer class="footer">
         <div class="footer__inner">
-            {{#checkIfAny @config.custom.copyrightText @config.custom.feedLink}}
+            {{!-- the RSS link shows only while Publii's RSS feed is on (Site settings > Feed), otherwise it would point to a missing feed.xml --}}
+            {{#if @config.custom.copyrightText}}
                 <div class="footer__copyright">
                     {{{@config.custom.copyrightText}}}
-                    {{#if @config.custom.feedLink}}<span class="footer__feed"><a href="{{@website.url}}/feed.xml" type="application/rss+xml" title="RSS feed">RSS</a></span>{{/if}}
+                    {{#checkIfAll @config.custom.feedLink @config.site.feed.enableRss}}<span class="footer__feed"><a href="{{@website.url}}feed.xml" type="application/rss+xml" title="RSS feed">RSS</a></span>{{/checkIfAll}}
                 </div>
-            {{/checkIfAny}}
+            {{else}}
+                {{#checkIfAll @config.custom.feedLink @config.site.feed.enableRss}}
+                    <div class="footer__copyright"><span class="footer__feed"><a href="{{@website.url}}feed.xml" type="application/rss+xml" title="RSS feed">RSS</a></span></div>
+                {{/checkIfAll}}
+            {{/if}}
             {{#if @config.custom.socialButtons}}
                 <div class="footer__social">
                     {{#if @config.custom.socialFacebook}}
@@ -88,7 +93,7 @@
 {{/if}}
 
 <script defer src="{{js "lang.js"}}"></script>
-<script>(function(){var c=document.querySelector('.footer__copyright');if(c){c.innerHTML=c.innerHTML.replace(/(©|&copy;|\(c\)|\(C\))(\s*)\d{4}/,function(_,s,w){return s+w+new Date().getFullYear();});}})();</script>
+<script>(function(){var c=document.querySelector('.footer__copyright');if(c){c.innerHTML=c.innerHTML.replace(/(©|&copy;|\(c\)|\(C\))(\s*)(\d{4})(?:(\s*(?:-|–|—|&ndash;|&mdash;)\s*)\d{4})?/,function(_,s,w,a,d){var y=new Date().getFullYear();return d?s+w+a+d+y:s+w+y;});}})();</script>
 
 {{{@footerCustomCode}}}
 {{{ publiiFooter }}}
